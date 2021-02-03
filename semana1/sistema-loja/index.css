@@ -3,23 +3,32 @@
 
 }
 
-h1{
-    color: rgb(221, 221, 221);
-}
 p{
-    font-style: italic;
-    font-family: 'Courier New', Courier, monospace ;
+    color: rgb(219, 207, 207);
+    display: inline;
+    font-style:italic;
+    font-size: 20px;
+    padding: 30vh;
+    text-align: center;
 }
+
 .cabecalho{
     background-color: rgb(0, 0, 0);
-    font-family: 'Courier New', Courier, monospace
+    font-family: 'Courier New', Courier, monospace;
+    width: 100%;
+    height: 125px;       
 }
+#logo_git{
+    display: inline-block;
+    margin-left: 10vh;
+    width: 18%;
+    height: 120px;
+}
+
 .menu{
     background-color: rgb(110, 109, 109);
     height: 30px;
-    position: relative;
-    bottom: 20px;
-    
+       
 }
 .menu a {
     
@@ -36,26 +45,43 @@ p{
 
    
 }
-.box{
+/* .box{
     font-size: 25px;
     background-color: rgb(79, 126, 126);
     display: inline-block;
     width:30%;
-    /*  */
     border: 3px black solid;
     
+} */
+    
+button{
+    display: inline;
+    background-color: rgb(253, 194, 253);
+    margin: 4px;
+    width: 7vh;
+    height: 7vh;
+    border:none;
+    border-radius: 50%;
+    align-content: center;
+    box-shadow: -2px -1px 8px #db2d7f, 1px 1px 1px #ddaeba;
 }
-    
-
-.fim{
-    
-    background-color: rgb(197, 39, 150);
+h4{
+    padding: 1vh;
+    color:rgb(78, 76, 76);
+    font-size: 18px;
+}
+.fixarRodape {
+    background-color: rgb(255, 199, 246);
+    bottom: 0;
     position: fixed;
     width: 100%;
-    height: 50px;
-    bottom: 0;
-
+    text-align: center;
+    box-shadow: -1px -0px 15px #db2d7f, 1px 1px 1px #ddaeba;
+    
+    
 }
+
+
 .funcionarios{
 
     background-color: rgb(110, 109, 109);
