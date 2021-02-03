@@ -3,6 +3,7 @@ margin:0;
 padding: 0;
 }
 
+
 p{
     color: rgb(219, 207, 207);
     display: inline;
@@ -94,5 +95,65 @@ h4{
     height: 100px;
     width: 150px;
   
+    
+}
+/* CONFIG LOGIN */
+/* container login*/
+#login-container {
+    color:#085588;
+    background-color: #fff;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px 30px;
+    margin-top: 10vh;
+    border-radius: 10px;
+    text-align: center;
+}
+/* form login */
+form {
+    margin-top:40px;
+    margin-bottom: 40px;
+}
+label{
+    display: block;
+    width: 100%;
+    text-align: left;
+    font-weight: bold;
+    
+    
+}
+input {
+    display: block;
+    width: 96%;
+    text-align: left;
+    padding: 8px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    
+}
+input:focus {
+    border-bottom: 2px solid rgb(17, 153, 153);
+}
+/* esqueceu a senha */
+#forgot-pass{
+    text-align: center;
+    display: block;
+}
+
+input[type="submit"]{
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    height: 40px;
+    border-radius: 20px;
+    margin-top: 30px;
+    color: #fff;
+    background-color: #08558b;
+    cursor: pointer;
+}
+input[type="submit"]:hover{
+    background-color: #18223c;
     
 }
