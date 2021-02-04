@@ -69,13 +69,24 @@ div img {
   **/
 
 #container-de-descricao {
-    padding: 4vh;
+    
+    padding: 10vh;
     background-color: #2274a5;
     color: white;
 }
+/* NÃO CONSEGUI ALINHAR O TEXTO SOMOS UMA EMPRESA.. */
+#container-de-descricao > p{
+    
+    text-align: center;
+    
+    color: white;
+}
 
-#container-de-descricao>ol {
+#container-de-descricao>ol, >p{
     padding: 15px 0px;
+    margin: auto;
+    text-align: center;
+    width: 30vh;
 }
 
 #container-para-comprar {
@@ -102,6 +113,7 @@ div:last-child {
 
 table {
     width: 60%;
+    text-align: center;
 }
 
 td button {
