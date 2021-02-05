@@ -1,0 +1,105 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+.logo{
+    padding-left: 40px;
+    width: 100px;
+    height: 100px;
+}
+header
+{
+	display: flex;
+	justify-content: space-between;
+	align-items:center;
+	height: 100px;
+	background-color: #ffffff;
+	box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
+	
+}
+
+header ul
+{
+	display: flex;
+}
+
+header ul li a
+{
+   
+	margin: 30px;
+	font-family:Verdana, Geneva, Tahoma, sans-serif ;
+    text-transform: uppercase;
+    color: #505050;
+	font-size: 15px;
+    font-weight: 700;
+    padding: 14px 0px;
+    padding-right: 30px;
+    border-right:grey 1px solid;
+}
+footer
+{
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+}
+
+.imgbg
+{
+	display: block;
+	margin: -270px 1380px;
+	width: 45vh;
+	height:45vh;
+	border-radius:  40% 1px;
+	box-shadow: -2px -3px 12px rgba(188, 113, 218, 0.8);
+}
+
+#container-branco
+{
+	height:300px;
+	
+
+	}
+
+#main-container 
+{     
+	margin-top: 130px;
+	margin-left: 1380px;
+	height: 100vh;
+	background-color: #b55be9;
+}
+
+.btn1
+{
+    width: 100px;
+	height: 38px;
+	border-radius: 10px;
+	font-family: calibri;
+	font-size: 14px;
+	margin: 0px 10px;
+	background-color: #0b0b0b;
+	border: none;
+	color: #ffffff;;
+
+}
+
+/* ATÉ AQUI TESTADO okkkk */
+#main-container :last-child ul
+{    
+	padding:20vh 8vh; 
+	color: ivory;
+}
+
+
+.conteudo-texto p:nth-child(1)
+{
+	font-family: calibri;
+	font-weight: bold;
+	color: #6d6d6d;
+	font-size: 22px;
+}
+
+
+
