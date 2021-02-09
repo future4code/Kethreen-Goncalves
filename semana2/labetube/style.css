@@ -2,14 +2,16 @@
     margin:0;
     padding: 0;
     text-decoration:none;
-    color: black;
+    
     font-size: 24px;  
 }
 #bory-container{
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 10%;
     grid-template-rows: 60px 1fr 60px;
+    color: #080808;
     height: 100vh;
+    color:white;
 }
 
 #bory-container1{
@@ -19,11 +21,11 @@
     height: 100vh;
 }
 header{
-    background-color:rgb(81, 94, 212) ;
+    background-color:rgb(19, 194, 185) ;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     grid-column: 1/-1;
+    
 }
 
 .movie-container{
@@ -31,14 +33,17 @@ header{
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr ;
     height: 100%;
+    color: #333333;
     align-items: center;
     justify-content: center;
     background-color: rgb(225, 227, 231);
+
 }
 .card-movie {
     display: grid;
-    box-shadow: 2px 2px 25px rgb(17, 17, 17);
+    box-shadow: 2px 2px 12px rgb(17, 17, 17);
     width: 200px;
+    color: #333333;
 }
 video{
     display: flex;
@@ -57,10 +62,12 @@ video{
 }
 
 footer{
-    background-color:rgb(81, 94, 212) ;
+    background-color:rgb(19, 194, 185)  ;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center;    
     height: 100%;
     grid-column: 1/-1;
+    
+    
 }
