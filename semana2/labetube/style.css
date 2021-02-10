@@ -2,54 +2,102 @@
     margin:0;
     padding: 0;
     text-decoration:none;
-    
     font-size: 24px;  
-}
-#bory-container{
-    display: grid;
-    grid-template-columns: 1fr 10%;
-    grid-template-rows: 60px 1fr 60px;
-    color: #080808;
-    height: 100vh;
-    color:white;
+   
 }
 
+header{
+    background-image: linear-gradient(to right, rgb(5, 248, 236) , rgb(77, 116, 175));
+    box-shadow: 0px 1px 10px rgb(107, 80, 228);
+    display: flex;
+    justify-content: cente;
+    align-items: center;
+    grid-column: 1/-1;
+    height:12vh ;
+}
+.logo-header{
+    height: 100%;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    padding: 3vh 30vh 3vh 3vh;
+}
+input{
+    width: 700px;
+    
+}
+button{
+    margin-left: 50vh;
+     
+}
+.home{
+    margin-left: 50vh;
+    color:white;
+     
+}
+
+#bory-container{
+   display: grid;
+   grid-template-columns: 1fr 6fr;
+      
+}
+.nav-container{
+    display: grid;
+    grid-template-rows: repeat(4, 3rem) 1fr ;
+    height: 100%;
+  
+}
+.main-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    height: 100%;
+    background-image: linear-gradient(to right, rgb(190, 236, 234) , rgb(190, 211, 243));
+}
+
+nav {
+    background-image: linear-gradient(to right, rgb(190, 236, 234) , rgb(190, 211, 243));
+    display: grid;
+    justify-content: start;
+    align-items:center;   
+   
+}
+a{
+    color:rgb(72, 15, 124);
+    
+}
 #bory-container1{
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 60px 1fr 60px;
     height: 100vh;
-}
-header{
-    background-color:rgb(19, 194, 185) ;
-    display: flex;
-    align-items: center;
-    grid-column: 1/-1;
-    
+    width: 100%;
 }
 
-.movie-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr ;
-    height: 100%;
-    color: #333333;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(225, 227, 231);
-
-}
 .card-movie {
     display: grid;
+    margin-top: 10% ;
     box-shadow: 2px 2px 12px rgb(17, 17, 17);
-    width: 200px;
+    justify-content: center;
+    align-items: center;
+    
     color: #333333;
 }
+.card-movies{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+}
+
+   
+
+
 video{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 80%;
+    width: 60%;
    
 }
 .fullscreen{
@@ -63,11 +111,13 @@ video{
 
 footer{
     background-color:rgb(19, 194, 185)  ;
-    display: flex;
-    align-items: center;
-    justify-content: center;    
-    height: 100%;
+    display: grid;
     grid-column: 1/-1;
+    height: 90px;
+    opacity: 0.8;
+    justify-content: center;
+    align-items: center;
+  
     
     
 }
