@@ -1,0 +1,248 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+	text-decoration: none;
+	
+}
+.logo{
+    padding-left: 40px;
+    width: 100px;
+    height: 100px;
+}
+header{
+	display: flex;
+	justify-content: space-between;
+	align-items:center;
+	width: 100%;
+	height: 100px;
+	background-color: #ffffff;
+	box-shadow: 2px 2px 12px rgba(0,0,0,0.2);
+}
+
+header ul{
+	
+	display: flex;
+	
+	
+}
+
+header ul li a{
+   	width: 100%;
+	margin: 3px;
+	font-family:Verdana, Geneva, Tahoma, sans-serif ;
+    text-transform: uppercase;
+    color: #505050;
+	font-size: 15px;
+    font-weight: 700;
+    padding-right: 30px;
+    border-right:grey 1px solid;
+}
+
+footer{
+    bottom: 0;
+    position:fixed;
+	width: 100%;
+	height: 40px;
+	text-align: center;
+	background-color: rgb(199, 196, 196);
+	opacity: 0.8;
+	
+}
+
+.imgbg{
+	display: block;
+	position: absolute;
+	top:14%;
+	width: 100%;
+	right: 0.5%;
+	width: 24%;
+	height:45%;
+	border-radius:  40% 1px;
+	box-shadow: -2px -3px 12px rgba(188, 113, 218, 0.8);
+}
+
+#container-branco{
+	height:300px;
+	width: 100%;
+
+
+}
+.conteudo-texto{
+	margin: 100px ;
+	padding: 40px 1px 40px 50px;
+	border-left: #ae3bdb 6px solid;
+	border-right: #a93ec4 6px solid;
+	border-radius:  130px 130px 130px 130px;
+	display: inline-block;
+	width: 25%;
+	height: 150px;
+
+}
+.conteudo-texto p:nth-child(1){
+	
+	font-family:Verdana, Geneva, Tahoma, sans-serif ;
+	font-weight: bold;
+	color: #6d6d6d;
+	width: 100%;
+	font-size: 48px;
+}
+.conteudo-texto p:nth-child(2){
+	text-align:start;
+	padding: 1vh 5vh;
+	font-family:Verdana, Geneva, Tahoma, sans-serif ;
+	color: #464545;
+	font-size: 22px;
+	width: 80%;
+}
+
+.btn1{
+    width: 20%;
+	height: 34px;
+	border-radius: 10px;
+	font-family: calibri;
+	font-size: 12px;
+	background-color: #6b1d83;
+	border: none;
+	color: #ffffff;
+	margin-top: 20px;
+	margin-left: 160px;
+}
+.container-lateral {     
+	margin-top: 0%;
+	width: 16%;
+	height: 100%;
+	position:absolute;
+	right: 0;
+	background-color: #b55be9;
+	padding:26vh 8vh; 
+	color: ivory;
+	font-size: 20px;
+	text-align: justify;
+}
+
+/* ^^ ATÉ AQUI TESTADO e VACINADO ^^ okkkk */
+
+
+
+/* container login DO CONTATO*/
+#container-contato {
+	color:#000000;
+	font-family:Verdana, Geneva, Tahoma, sans-serif ;
+	font-size: 16px;
+	background-color: rgb(231, 227, 236) ;
+	opacity: 0.8;
+	width: 25%;
+	margin:auto;
+    padding: 20px 30px;
+    margin-top: 10vh;
+    border-radius: 10px;
+	text-align: center;
+	
+}
+
+
+
+/* form login */
+img.contato {
+    width: 18%;
+    display: block;
+	margin: auto;
+	
+}
+
+input {
+    display: block;
+    width: 96%;
+    text-align: left;
+    padding: 8px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    
+}
+/*****falta alinhar o tezto da mensagem para cima*** */
+/* **** falta tbm colocar quebra de texto pro usuario  ****/
+input#mensagem{
+	height: 200px;
+	width: 96%;
+}
+
+/* BOTÃO FORM CONTATO */
+input[type="submit"]{
+    text-align: center;
+    font-weight: bold;
+    border: none;
+    margin: auto;
+    width: 25%;
+    height: 40px;
+    border-radius: 20px;
+    margin-top: 14px;
+    color: #fff;
+    background-color: #71608b;
+    cursor: pointer;
+} 
+input[type="submit"]:hover{
+    background-color: #321858;
+    transition: .5s;
+
+}
+/* *** conteiner trabalhos article**** */
+#header-article{
+	text-align: left;
+	font-size: 28px;
+	font-family:Verdana, Geneva, Tahoma, sans-serif ;
+	color: grey;
+	padding: 6vh ;
+	margin-left: 50vh;
+	
+}
+
+.site-container{
+
+margin: 12vh 6vh;
+padding-right: 8vh;
+max-width: calcc(100% - 80px);
+}
+.article-container{
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+gap: 2rem;
+}
+.article-image img {
+max-width: 100%;
+height: auto;
+border-radius: 20px 20px 0 0;
+}
+.article-car{
+	background: white;
+	border-radius: 20px;
+	transition: 0.3s;
+}
+.article-card:hover {
+	box-shadow: 0 4px 2px 0 rgba(34,68,123,0.2);
+	cursor: pointer;
+}
+.article-content{
+	padding: 2rem;
+}
+.article-content .card-category{
+	font-size: 0.875rem;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	font-weight: 600;
+	color: #6b82a7;
+	display: block;
+	text-decoration: none;
+}
+.article-content .card-title {
+	margin:1rem 0;
+	color: #22447b;
+
+}
+.article-content .card-excerpt{
+	font-size: 1rem;
+	line-height: 1.5rem;
+	color: #6b82a7;
+	margin: 0;
+
+}
