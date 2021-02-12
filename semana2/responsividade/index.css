@@ -1,0 +1,78 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+div {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 20vh;
+    width:100vw;   
+}
+#first-block {
+    background-color: red;  
+}
+.blue-block {
+    background-color: blue;
+    width:30vw;
+    margin: 1%;
+}
+.yellow-block {
+    background-color: yellow;
+    width:30vw;
+    margin: 1%;
+}
+.green-block {
+    background-color: green;
+    width:30vw;
+    margin: 1%;
+}
+.black-block {
+    background-color: black;
+    color: white;
+    height: 40vh;
+    width:46vw;
+    margin: 1%;
+}
+.white-block , #main-container :nth-child(12){
+    background-color: white;
+    width:30vw;
+    margin: 1%;
+}
+
+/* config para celular */
+@media screen and (max-device-width : 420px) {
+
+   #first-block, .blue-block, .yellow-block, .green-block, .black-block, .white-block,  #main-container :nth-child(12) {
+    width: 100vw;
+    height: 10vh;
+}
+}
+/* config tablet */
+@media screen and (min-device-width : 421px) and (max-device-width : 800px) {
+
+    .blue-block, .yellow-block, .white-block {
+        width:46vw;               
+    }   
+    .green-block {
+        width:100vw;
+        margin: 2.5%;       
+    }
+    .black-block {      
+        height: 30vh;
+        width:46vw;      
+    }
+    #main-container :nth-child(12) {
+        display: flex;
+        background-color: white;
+        height: 20vh;
+        width:100vw;
+        margin: 2.5%;
+        justify-content: center;
+        align-items: center;
+    }
+}
