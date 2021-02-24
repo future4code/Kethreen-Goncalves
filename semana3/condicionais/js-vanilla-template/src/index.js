@@ -46,12 +46,13 @@
 //         console.log('DIGITE UM TURNO VÁLIDO!')
        
 // }
-// EXERCÍCIO 7
-// let filme = prompt("Qual gênero de filme vão assistir?")
-// let preco = Number(prompt("Qual o preço do Ingresso?"))
-// if (filme == 'fantasia' && preco < 15 ){
-//     console.log("Bom filme!")
-// }else {
-//     console.log ("Escolha outro filme :(")
+// EXERCÍCIO 7 com desafio 1.
+let filme = prompt("Qual gênero de filme vão assistir?")
+let preco = Number(prompt("Qual o preço do Ingresso?"))
+if (filme == 'fantasia' && preco < 15 ){
+    let snack = prompt('Qual snack você quer comprar?')
+    console.log(`Bom filme!... com ${snack}`)
+}else {
+    console.log ("Escolha outro filme :(")
    
-// }
+}
