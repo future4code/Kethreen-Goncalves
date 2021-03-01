@@ -102,3 +102,53 @@
 
 // /*EXERCÍCIO 2.A */
 const numeros = [0, 8, 23, 16, 10, 15, 41, 12, 13]
+console.log('Array Original: ', numeros)
+const salvarNumerosPares = (array) =>{    
+    let novoArrayComNumerosPares = []
+    for (num of array ){
+        if (num %2===0){
+   novoArrayComNumerosPares.push(num*2)
+        }
+    }
+    console.log('Numeros pares do Array: ',novoArrayComNumerosPares)
+   return novoArrayComNumerosPares 
+}
+   salvarNumerosPares(numeros)
+
+/*EXERCÍCIO 2.B */
+
+const maiorNumeroDoArray = (array) => {
+    let maiornumero = 0
+    for (num of array){
+        if (num > maiornumero){
+            maiornumero = num
+        }
+    }
+    console.log('Maior número do Array ',maiornumero)
+    return maiornumero
+}
+maiorNumeroDoArray(numeros)
+
+/*EXERCÍCIO 2.C */
+const retornaIndiceMaiorValor = (array)=> {
+    let maior = array[0]
+    let indice = 0
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] > maior) {
+            maior = array[i]
+            indice = i
+        }
+    }
+    console.log('Indice do maior número do Array: ',indice)
+    return indice;
+}
+
+retornaIndiceMaiorValor(numeros)
+
+/*EXERCÍCIO 2.D */
+const inverteOrdemDoArray = (array) =>{
+let meuArrayInvertido = array.slice(0).reverse();
+console.log('Array invertido' ,meuArrayInvertido)
+return meuArrayInvertido
+}
+inverteOrdemDoArray(numeros)
