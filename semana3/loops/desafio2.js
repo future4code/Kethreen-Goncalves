@@ -6,8 +6,6 @@ function getRandomIntInclusive(min, max) {
 
 let numeroEscolhido = getRandomIntInclusive(0,100)
 
-alert('Vamos Jogar!')
-
 
 console.log('Vamos Jogar!')
 
