@@ -7,8 +7,6 @@ function getRandomIntInclusive(min, max) {
 let numeroEscolhido = getRandomIntInclusive(0,100)
 
 
-
-console.log(numeroEscolhido)
 console.log('Vamos Jogar!')
 
 let resposta = Number(prompt(" Qual número estou pensando?"))
