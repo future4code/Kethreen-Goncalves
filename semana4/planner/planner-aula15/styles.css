@@ -9,23 +9,35 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 3%;
 }
 
 section {
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
     height: 90vh;
+    width: 100vw;
 }
 
 .semana {
+    display: flex;
+    flex-direction: column;
     border: 1px dotted rgb(53, 53, 53);
     width: 14%;
-    padding: 5px;
+    padding: 1%;
 }
 .itens{
+    display: flex;
     color: rgb(53, 53, 53);
     font-size: 1.4rem;
 }
 #botaoApagar{
     margin:15vw;
 }
+.semana{
+display: flex;
+font-size: 1.6vw;
+padding: 1%;
+}
+
