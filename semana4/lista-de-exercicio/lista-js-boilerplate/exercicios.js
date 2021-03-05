@@ -88,7 +88,18 @@ function retornaNNumerosPares(n) {
 
 function checaTriangulo(a, b, c) {
   // implemente sua lógica aqui
+   let triangulo =""
+   if(a===b&& a===c){
+      triangulo = 'Equilátero'
+   }else if (a===b || b===c || a===c){
+      triangulo = 'Isósceles'
+   }else{
+      triangulo = 'Escaleno'
+   }
+   return triangulo
+
 }
+
 
 // Exercício 9
 
