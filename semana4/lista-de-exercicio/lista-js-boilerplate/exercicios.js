@@ -1,3 +1,4 @@
+
 //Exercício 1
 
 function inverteArray(array) {
@@ -9,30 +10,41 @@ function inverteArray(array) {
 
 function retornaNumerosParesElevadosADois (array) {
    // implemente sua lógica aqui
+   let arrayElevadoAdois= []
+   array.forEach((element)=>{
+   if(element % 2 === 0 ){
+      arrayElevadoAdois.push(element**2)
+   }
+})
+   return arrayElevadoAdois
 }
-
 //Exercício 3
 
 function retornaNumerosPares (array) {
    // implemente sua lógica aqui
+
 }
+
 
 //Exercício 4
 
 function retornaMaiorNumero(array) {
    // implemente sua lógica aqui
+
 }
 
 //Exercício 5
 
 function retornaQuantidadeElementos (array) {
    // implemente sua lógica aqui
+ 
 }
 
 //Exercício 6
 
 function retornaExpressoesBooleanas() {
    // implemente sua lógica aqui
+   
 }
 
 //Exercício 7
