@@ -73,7 +73,16 @@ return  arraybooleanos
 
 function retornaNNumerosPares(n) {
    // implemente sua lógica aqui
+   let nNumerosPares =[]
+   for (let i = 0 ; i<=n*n && nNumerosPares.length<n; i++){
+      if ((i % 2) === 0) {
+         nNumerosPares.push(i)
+      }
+      
+   }
+   return nNumerosPares
 }
+
 
 // Exercício 8
 
