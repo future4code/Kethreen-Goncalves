@@ -1,0 +1,47 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: rgba(133, 226, 226, 0.199);
+}  
+
+header {
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 3%;
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 90vh;
+    width: 100vw;
+    padding: 0% 1% 4% 3.3%;
+    
+}
+
+.semana {
+    display: flex;
+    flex-direction: column;
+    border: 1px dotted rgb(53, 53, 53);
+    width: 14%;
+    padding: 1%;
+    background-image: url(https://img.freepik.com/free-photo/background-crumpled-paper-sheet_1194-7545.jpg?size=626&ext=jpg);
+    background-size: cover;
+    display: flex;
+    font-size: 1.6vw;
+    padding: 1%;
+}
+.itens{
+    display: flex;
+    color: rgb(53, 53, 53);
+    font-size: 1.4rem;
+    background-color: transparent;
+}
+#botaoApagar{
+    margin:15vw;
+}
+
