@@ -26,9 +26,8 @@ const  App = () => {
   if (atualiza === true){
      getProfileToChoose();
      setAtualiza (false)
-  } 
- 
-}, [matches,atualiza]);
+    } 
+ }, [matches,atualiza]);
 
 useEffect(() => {
  
