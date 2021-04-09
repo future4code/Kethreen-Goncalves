@@ -52,7 +52,7 @@ const MatchesCards = styled.div`
   gap:1vw;
   margin: 1vw 0 0 2vw;
   padding: 1vh;
-  box-shadow: 0 0px 20px 0 rgba(79, 81, 84);
+  box-shadow: 0 0px 8px 0 rgba(79, 81, 84);
   
   img{
     width:80px;

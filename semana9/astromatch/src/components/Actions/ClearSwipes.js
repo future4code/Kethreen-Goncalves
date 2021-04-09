@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from "styled-components"
 import axios from "axios"
+import Profiles from './Profiles';
 
 
 const  ClearSwipes = (props) => {
@@ -15,7 +16,7 @@ const  ClearSwipes = (props) => {
     .catch((err) => alert("atualiza a pagina"));
 };
   
-  
+  <Profiles clearSwipes={clearSwipes}/>  
 	return(
     <ClearButton onClick={clearSwipes}>Limpar swipes e matches</ClearButton>
     )
@@ -26,6 +27,9 @@ export default ClearSwipes;
 
 const ClearButton = styled.button`
 
-bottom: 5px;
-right: 5px;
+margin-top:2vh;
+padding:3px;
+border-radius:8px;
+background-color:#313131;
+color:white;
 `;

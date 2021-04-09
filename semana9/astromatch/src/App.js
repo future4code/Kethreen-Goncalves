@@ -74,12 +74,12 @@ const ContainerApp = styled.div`
   flex-direction:column;
   align-items:center;
   justify-content:center;
-
+  
    `;
 
 const MainContainer = styled.div`
   background-color:#ffffff;
-   border-radius:40px;
+   border-radius:20px;
    box-shadow: 0 0px 20px 0 rgba(79, 81, 84);
    background-repeat: no-repeat;
    background-size: cover;
@@ -88,7 +88,15 @@ const MainContainer = styled.div`
    flex-direction:column;
    align-items:center;
    width:20vw;
-   height:60vh;
+   height:66vh;
+   @media(max-width: 800px) {
+    width:100vw;
+    height:100vh;
+   }
+   @media(max-width: 1080px) {
+    width:60vw;
+    height:70vh;
+   }
    
   `;
 
@@ -101,13 +109,18 @@ const TitleApp = styled.div`
     box-shadow: 0 0 0 0;
     outline: 0;
 }
+img{
+  width:60%;
+  height:100%;
+  
+}
 
   button:nth-child(1){
   background: url("https://www.flaticon.com/svg/vstatic/svg/3925/3925153.svg?token=exp=1617941653~hmac=5f1e0e350428fa87eab5ee15679e2f09");
   background-size: cover;
   background-repeat: no-repeat;
-  width:56px;
-  height:56px;
+  width:14%;
+  height:100%;
   border: none;
   
   }
@@ -115,8 +128,8 @@ const TitleApp = styled.div`
   background: url("https://www.flaticon.com/svg/vstatic/svg/3077/3077000.svg?token=exp=1617940461~hmac=60846e2c4dca85d17695a597fe36d293");
   background-size: cover;
   background-repeat: no-repeat;
-  width:44px;
-  height:44px;
+  width:14%;
+  height:100%;
   border: none;
 
 }

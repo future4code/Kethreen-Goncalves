@@ -8,6 +8,7 @@ import loadingImage from "../img/loading.gif"
 const  Profiles = () => {
  const [person, setPerson] = useState([]);
  const [loading, setLoading] = useState("stop");
+ const [reset, setReset] = useState(1);
 
 // PEGANDO PERFIS PARA EXIBIR
  const getProfileToChoose = () => {
@@ -20,13 +21,37 @@ const  Profiles = () => {
       setLoading("start");
 
     })
-    .catch((err) => console.log(err, "entrou no erro"));
+    .catch((err) => console.log(err, "Não há mais Astros para ver! Limpe seis Swipes e Match"));
+
+  
 };
 
  useEffect(() => { 
-     getProfileToChoose();  
- }, []);
+     getProfileToChoose();
+   }, []);
 
+ 
+
+  const clear = () =>  {
+    axios
+    .put("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/kethreen-cruz/clear"
+    )
+    .then((response) => {
+
+    })
+    .catch((err) => alert("erro! tente novamente"));
+
+  };
+
+  useEffect(() => { 
+    if (reset >= 5){
+      clear();
+      console.log(reset);
+      setReset(1); 
+    }
+
+  }, [reset]);
+ 
 // ESCOLHENDO DAR LIKE OU NÃO PARA O PERFIL ATRAVÉS DO BOTÃO
   const getChoosePerson = (id,choice) => {  
      axios
@@ -46,8 +71,12 @@ const  Profiles = () => {
       })
       .catch((err) => alert("erro! tente novamente"));
       setLoading(false); 
-      
+      setReset(reset+1);
   };
+
+
+
+ 
 
   return(
     <>
@@ -63,17 +92,17 @@ const  Profiles = () => {
         
     </>
     ) : loading === "nolike" ? 
-    ( <img src={imageDislike} 
+    ( <ImageLoad><img src={imageDislike} 
       width="150" height="150" 
-      alt="imagem nolike" /> 
+      alt="imagem nolike" /></ImageLoad> 
     ) : loading ==="like" ? 
-    ( <img src={imageLike} 
+    ( <ImageLoad><img src={imageLike} 
       width="200" height="200" 
-      alt="imagem like" />
+      alt="imagem like" /></ImageLoad>
     ) : loading === "stop" ? 
-    (<img src={loadingImage} 
+    (<ImageLoad><img src={loadingImage} 
     width="200" height="200" 
-    alt="imagem loading" />
+    alt="imagem loading" /></ImageLoad>
     ) : (<> </>)
    
 }
@@ -84,36 +113,82 @@ const  Profiles = () => {
 }
 
 export default Profiles;
-
+const ImageLoad = styled.div`
+margin:40%;
+transition: 4s;
+`;
 
 const CardMatchContainer = styled.div`
  text-align:center;
+ background-color:#783cb5;
+ box-shadow: 0 0px 20px 0 rgba(69, 71, 94);
+ height:100%;
+ width:100%;
+ border-radius: 15px;
+ font-family:Arial, Helvetica, sans-serif;
+ 
+ @keyframes entrace {
+  
+    100%{
+        transform: translateX(0);
+        opacity: 1;
+      }
+    0%{
+        transform: translateX(200px)  translateY(-40px);
+        opacity: 0.3;
+    }
+}
+animation: entrace 0.8s;
 
 img{
-  width:100%;
-  height:250px;
-  block-size:cover;
+  margin-top:1.5vh;
+  width:90%;
+  height:58%;
+  background-color:yellow;
+  inline-size:cover;
   border-radius: 15px 15px 0 0 ;
   cursor: pointer;
- 
-
+}
+h3{
+  margin:1vh;
+  height:6%;
+  width:100%;
+  font-size:1.3rem;
+  @media(max-width: 800px) {
+    font-size:1rem;
+   }
+}
+p{
+  margin:2vh 0 2vh 0;
+  height:10%;
+  width:100%;
+  font-size:1rem;
+  @media(max-width: 800px) {
+    font-size:0.8rem;
+   }
 }
 `;
-
-
 
 const ButtonLike = styled.button`
   background: url("https://www.rawshorts.com/freeicons/wp-content/uploads/2017/01/green_webpict35_1484337168-1.png");
   background-size: cover;
   background-repeat: no-repeat;
-  width:70px;
-  height:70px;
+  width:60px;
+  height:60px;
   border-radius:50%;
-  margin-left:4vw;
+  margin-left:5vw;
   background-color: white;
   transition: .4s;
-  box-shadow: 0 4px 10px 0 rgba(131, 19, 122, 0.618);
+  opacity: 0.7;
+  box-shadow: 0 4px 10px 0 rgba(216, 222, 232, 0.418);
   cursor: pointer;
+  :hover {
+    opacity: 1;
+  }
+  @media(max-width: 800px) {
+    width:40px;
+  height:40px;
+   }
 `;
 
 const ButtonNo = styled.button`
@@ -121,11 +196,18 @@ const ButtonNo = styled.button`
  background: url("https://image.flaticon.com/icons/png/512/458/458594.png");
   background-size: cover;
   background-repeat: no-repeat;
-  width:70px;
-  height:70px;
+  width:60px;
+  height:60px;
   border-radius:50%;
   transition: .4s;
-  box-shadow: 0 4px 10px 0 rgba(131, 19, 122, 0.618);
+  opacity: 0.7;
+  box-shadow: 0 4px 10px 0 rgba(216, 222, 232, 0.418);
   cursor: pointer;
-
+  :hover {
+    opacity: 1;
+  }
+  @media(max-width: 800px) {
+    width:40px;
+  height:40px;
+   }
 `;

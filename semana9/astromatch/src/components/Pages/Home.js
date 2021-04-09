@@ -26,7 +26,8 @@ const ContainerHome = styled.div`
   width:80%;
   height:82%;
   color:white;
-  background-color: #313131;
+  margin-top:1vh;
+  background-color: #40b89a;
  
   `;
 
