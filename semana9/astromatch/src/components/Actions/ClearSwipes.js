@@ -3,22 +3,18 @@ import styled from "styled-components"
 import axios from "axios"
 
 
-const  ClearSwipes = () => {
+const  ClearSwipes = (props) => {
 
   const clearSwipes = () =>  {
     axios
     .put("https://us-central1-missao-newton.cloudfunctions.net/astroMatch/kethreen-cruz/clear"
     )
     .then((response) => {
-      
+      props.getMatches();
     })
     .catch((err) => alert("atualiza a pagina"));
 };
-
-
-
-    
-
+  
   
 	return(
     <ClearButton onClick={clearSwipes}>Limpar swipes e matches</ClearButton>

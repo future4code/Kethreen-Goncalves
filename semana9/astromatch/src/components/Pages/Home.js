@@ -17,13 +17,16 @@ const  PageHome = () => {
 export default PageHome;
 
 const ContainerHome = styled.div`
-  border: 1px solid black;
+  box-shadow: 0 0px 20px 0 rgba(69, 71, 94);
   text-align:center;
-  width:40%;
-  height:80%;
+  border-radius:15px;
   display:flex;
   flex-direction:column;
   align-items:center;
+  width:80%;
+  height:82%;
+  color:white;
+  background-color: #313131;
  
   `;
 
