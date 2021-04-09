@@ -44,7 +44,7 @@ const  Profiles = () => {
   };
 
   useEffect(() => { 
-    if (reset >= 5){
+    if (reset >= 23){
       clear();
       console.log(reset);
       setReset(1); 
