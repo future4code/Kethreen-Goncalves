@@ -1,14 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import styled from "styled-components"
 import offMatch from "../img/offMatch.gif"
 
 const  GetMatches = (props) => {
-  
-  
 
- useEffect(() => {
-       props.getMatches(); 
-   }, []);
 
  const matchesList = props.matches.map((iten) => (
   <MatchesCards key={iten.id}>

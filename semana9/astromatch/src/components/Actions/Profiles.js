@@ -21,7 +21,7 @@ const  Profiles = () => {
       setLoading("start");
 
     })
-    .catch((err) => console.log(err, "Não há mais Astros para ver! Limpe seis Swipes e Match"));
+    .catch((err) => alert("Não há mais Astros para ver! Limpe seis Swipes e Match"));
 
   
 };
@@ -46,7 +46,6 @@ const  Profiles = () => {
   useEffect(() => { 
     if (reset >= 23){
       clear();
-      console.log(reset);
       setReset(1); 
     }
 
@@ -83,11 +82,13 @@ const  Profiles = () => {
     {loading === "start" ?
     (<>
       <CardMatchContainer>
+       <Card>
         <img src={person.photo} alt="Perfis para escolher"/>
         <h3>{person.name}, {person.age} </h3>
         <p>{person.bio} </p> 
         <ButtonNo onClick={ () => getChoosePerson (person.id, false)}>  </ButtonNo> 
         <ButtonLike onClick={ () => getChoosePerson (person.id, true)} > </ButtonLike>
+      </Card>
       </CardMatchContainer>
         
     </>
@@ -115,10 +116,18 @@ const  Profiles = () => {
 export default Profiles;
 const ImageLoad = styled.div`
 margin:40%;
-transition: 4s;
+transition: 3s;
+`;
+const CardMatchContainer = styled.div`
+height:100%;
+ padding-top:4%;
+ background-color:white;
+
+ border-radius: 15px;
+
 `;
 
-const CardMatchContainer = styled.div`
+const Card = styled.div`
  text-align:center;
  background-color:#783cb5;
  box-shadow: 0 0px 20px 0 rgba(69, 71, 94);
@@ -138,13 +147,13 @@ const CardMatchContainer = styled.div`
         opacity: 0.3;
     }
 }
-animation: entrace 0.8s;
+animation: entrace 0.6s;
 
 img{
   margin-top:1.5vh;
   width:90%;
-  height:58%;
-  background-color:yellow;
+  height:50%;
+  background-color:white;
   inline-size:cover;
   border-radius: 15px 15px 0 0 ;
   cursor: pointer;
@@ -154,18 +163,14 @@ h3{
   height:6%;
   width:100%;
   font-size:1.3rem;
-  @media(max-width: 800px) {
-    font-size:1rem;
-   }
+ 
 }
 p{
   margin:2vh 0 2vh 0;
   height:10%;
   width:100%;
   font-size:1rem;
-  @media(max-width: 800px) {
-    font-size:0.8rem;
-   }
+ 
 }
 `;
 
@@ -186,8 +191,9 @@ const ButtonLike = styled.button`
     opacity: 1;
   }
   @media(max-width: 800px) {
-    width:40px;
-  height:40px;
+    margin-left:30%;
+    width:60px;
+    height:60px;
    }
 `;
 
@@ -207,7 +213,7 @@ const ButtonNo = styled.button`
     opacity: 1;
   }
   @media(max-width: 800px) {
-    width:40px;
-  height:40px;
+    width:60px;
+    height:60px;
    }
 `;

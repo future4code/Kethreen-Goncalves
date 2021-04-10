@@ -5,15 +5,19 @@ import ClearSwipes from './components/Actions/ClearSwipes'
 import GetMatches from "./components/Pages/GetMetchs"
 import axios from "axios"
 import logo from "./components/img/Captura de tela de 2021-04-09 01-20-37.png"
+import logoHeart from "./components/img/logocoracao.png"
+import logoBack from "./components/img/voltar.png"
+
+
 const  App = () => {
  const [page, setPage] = useState("home");
  const [matches, setMatches] = useState([]);
 
+
  const changePage = () => {
   if(page === "home"){
+    getMatches();
     setPage("matchs");
-  }else if (page === "matchs"){
-    setPage("home");
   }else{
     setPage("home");
   }
@@ -25,7 +29,7 @@ if (page === "home"){
        <TitleApp>
           <div></div>
           <img src={logo} alt="logo"/>
-          <button onClick={changePage}>{matches.length}</button>
+          <button onClick={changePage} > <img src={logoHeart} alt="icone coração" /></button>
        </TitleApp>
        <PageHome/>
     </>
@@ -34,7 +38,7 @@ if (page === "home"){
     return(
       <>
       <TitleApp>
-          <button onClick={changePage}></button>
+          <button onClick={changePage}  > <img src={logoBack} alt="icone voltar"/></button>
           <img onClick={changePage}  src={logo} alt="logo"/>
           <div></div>
       </TitleApp>
@@ -43,15 +47,19 @@ if (page === "home"){
     )
   }
 }
+
 const getMatches = () => {
+
   axios
     .get(
       "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/kethreen-cruz/matches"
     )
     .then((response) => {
+    
       setMatches(response.data.matches);
     })
     .catch((err) => alert("tente novamente mais tarde!"));
+    
 };
   return (
 
@@ -67,14 +75,16 @@ const getMatches = () => {
 export default App;
 
 const ContainerApp = styled.div`
-  width:100vw;
+  width:100%;
   height:100vh;
   background-color:#f0f3f7;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  
+  padding:0;
+  margin:0;
+ 
    `;
 
 const MainContainer = styled.div`
@@ -89,22 +99,24 @@ const MainContainer = styled.div`
    align-items:center;
    width:20vw;
    height:66vh;
-   @media(max-width: 800px) {
-    width:100vw;
-    height:100vh;
-   }
    @media(max-width: 1080px) {
     width:60vw;
     height:70vh;
    }
-   
+   @media(max-width: 800px) {
+    width:100%;
+    height:100%;
+   }
   `;
 
 const TitleApp = styled.div`
   display:flex;
   flex-direction:row;
   align-items:center;
-  gap:2vw;
+  margin-left:2%;
+  margin-top:2%;
+  cursor: pointer;
+
   textarea:focus, button:focus {
     box-shadow: 0 0 0 0;
     outline: 0;
@@ -116,22 +128,24 @@ img{
 }
 
   button:nth-child(1){
-  background: url("https://www.flaticon.com/svg/vstatic/svg/3925/3925153.svg?token=exp=1617941653~hmac=5f1e0e350428fa87eab5ee15679e2f09");
-  background-size: cover;
-  background-repeat: no-repeat;
-  width:14%;
-  height:100%;
-  border: none;
+    border:none;
+    background:none;
+    width:18%;
+    height:70%;
+    margin-left:1%;
+    cursor: pointer;
+
+
   
   }
   button:nth-child(3){
-  background: url("https://www.flaticon.com/svg/vstatic/svg/3077/3077000.svg?token=exp=1617940461~hmac=60846e2c4dca85d17695a597fe36d293");
-  background-size: cover;
-  background-repeat: no-repeat;
-  width:14%;
-  height:100%;
-  border: none;
-
+    border:none;
+    background:none;
+    width:18%;
+    height:70%;
+    margin-left:16%;
+    cursor: pointer;
+ 
 }
   `;
  

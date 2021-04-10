@@ -17,7 +17,7 @@ const  PageHome = () => {
 export default PageHome;
 
 const ContainerHome = styled.div`
-  box-shadow: 0 0px 20px 0 rgba(69, 71, 94);
+
   text-align:center;
   border-radius:15px;
   display:flex;
