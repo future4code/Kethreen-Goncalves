@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState} from 'react'
 import styled from "styled-components"
 import PageHome from './components/Pages/Home'
 import ClearSwipes from './components/Actions/ClearSwipes'
@@ -12,6 +12,7 @@ import logoBack from "./components/img/voltar.png"
 const  App = () => {
  const [page, setPage] = useState("home");
  const [matches, setMatches] = useState([]);
+
 
 
  const changePage = () => {
@@ -31,7 +32,7 @@ if (page === "home"){
           <img src={logo} alt="logo"/>
           <button onClick={changePage} > <img src={logoHeart} alt="icone coração" /></button>
        </TitleApp>
-       <PageHome/>
+       <PageHome matches={matches}/>
     </>
 
   )}else{

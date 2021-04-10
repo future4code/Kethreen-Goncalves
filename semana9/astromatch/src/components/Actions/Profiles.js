@@ -5,7 +5,7 @@ import imageLike from "../img/likeimage.gif"
 import imageDislike from "../img/dislikeimage.gif"
 import loadingImage from "../img/loading.gif"
 
-const  Profiles = () => {
+const  Profiles = (props) => {
  const [person, setPerson] = useState([]);
  const [loading, setLoading] = useState("stop");
  const [reset, setReset] = useState(1);
@@ -82,13 +82,14 @@ const  Profiles = () => {
     {loading === "start" ?
     (<>
       <CardMatchContainer>
-       <Card>
+      
+      
         <img src={person.photo} alt="Perfis para escolher"/>
         <h3>{person.name}, {person.age} </h3>
         <p>{person.bio} </p> 
         <ButtonNo onClick={ () => getChoosePerson (person.id, false)}>  </ButtonNo> 
         <ButtonLike onClick={ () => getChoosePerson (person.id, true)} > </ButtonLike>
-      </Card>
+     
       </CardMatchContainer>
         
     </>
@@ -119,15 +120,6 @@ margin:40%;
 transition: 3s;
 `;
 const CardMatchContainer = styled.div`
-height:100%;
- padding-top:4%;
- background-color:white;
-
- border-radius: 15px;
-
-`;
-
-const Card = styled.div`
  text-align:center;
  background-color:#783cb5;
  box-shadow: 0 0px 20px 0 rgba(69, 71, 94);
@@ -135,7 +127,7 @@ const Card = styled.div`
  width:100%;
  border-radius: 15px;
  font-family:Arial, Helvetica, sans-serif;
- 
+
  @keyframes entrace {
   
     100%{

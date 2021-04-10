@@ -3,13 +3,11 @@ import styled from "styled-components"
 import Profiles from '../Actions/Profiles';
 
 
-const  PageHome = () => {
+const  PageHome = (props) => {
  
-
-
   return (
     <ContainerHome className="App">
-       <Profiles/>
+       <Profiles />
     </ContainerHome>
   );
 }
