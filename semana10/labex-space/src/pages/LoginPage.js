@@ -1,27 +1,60 @@
-import React from "react"
+import React, { useState } from "react"
+import axios from "axios"
 import {TiArrowBackOutline} from "react-icons/ti"
 import { useHistory } from "react-router-dom";
 import Header from "../Components/Header"
 import Footer from "../Components/Footer"
 import styled from "styled-components"
-import { goToAdminHomePage } from "../Routes/coordinator"
+import { goToAdminHomePage, goToHomePage } from "../Routes/coordinator"
+import {useProtectedLog} from "../hooks/useProtectedPage"
 
 const LoginPage = () =>  {
     const history = useHistory();
+    useProtectedLog();
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const handleEmail = (e) => {
+        setEmail(e.target.value);
+      };
+    
+      const handlePassword = (e) => {
+        setPassword(e.target.value);
+      };
+    
+    const login = () =>{
+        const body = {
+            email:email,
+            password: password
+        }
+        axios.post("https://us-central1-labenu-apis.cloudfunctions.net/labeX/kethreen-cruz/login",
+         body)
+        .then((res) => {
+            console.log(res);
+            window.localStorage.setItem('token', res.data.token)
+            goToAdminHomePage(history);
+        })
+        .catch((err)=> {
+            console.log(err.message);
+         
+
+        })
+    }
+
 
   return (
-    <div >
+    <div>
          <HeaderContainerListPage>
-            <BackPage onClick={history.goBack} ><TiArrowBackOutline/></BackPage>
+            <BackPage onClick={()=> goToHomePage(history)}  ><TiArrowBackOutline/></BackPage>
             <Header/>
           
         </HeaderContainerListPage>
      <MainLogin>
       <Login> 
        <div>Login</div>
-       <input placeholder="Your email" value="" ></input>
-       <input placeholder="Your password" value="" ></input>
-       <button onClick={()=> goToAdminHomePage(history)} >Login</button>
+       <input placeholder="Email" value={email} onChange={handleEmail} ></input>
+       <input placeholder="Password" value={password} onChange={handlePassword}></input>
+       <button onClick={login} >Login</button>
        <p>Área restrita para funcionários</p>
       </Login >
      </MainLogin>
@@ -58,6 +91,7 @@ button{
     margin:10%;
     width:60%;
     height:30%;
+
 }
 `;
 const BackPage = styled.div`

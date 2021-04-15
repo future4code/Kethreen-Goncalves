@@ -57,12 +57,7 @@ gap:5%;
 
 `;
 
-const MainListTrips = styled.div`
-display:flex;
-flex-direction:column;
-font-size:100px;
 
-`;
 
 const HeaderContainerListPage = styled.div`
 display:grid;

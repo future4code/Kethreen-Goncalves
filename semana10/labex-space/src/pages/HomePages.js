@@ -6,6 +6,7 @@ import Footer from "../Components/Footer"
 import Login from "../img/login.png"
 import styled from "styled-components"
 
+
 const HomePages = () =>  {
     const history = useHistory();
     
@@ -13,7 +14,7 @@ const HomePages = () =>  {
     <div >
      <Header/>
      <MainContainerHome>
-       <section onClick={()=> goToLoginPage(history)}><img alt="login administrativo" title="Área Administrativa" src={Login}/> <p>Área Administrativa</p></section> 
+       <section ><img onClick={()=> goToLoginPage(history)}alt="login administrativo" title="Área Administrativa" src={Login}/> <p>Área Administrativa</p></section> 
         <button onClick={()=> goToListTripsPage(history)}> 
             VER VIAGENS
         </button>
@@ -38,7 +39,8 @@ flex-direction:column;
         cursor: pointer;
         img{
             width:5%;
-            height:10%;   
+            height:10%; 
+            background-color:white;  
         }
         p{
             font-size:0.7rem;

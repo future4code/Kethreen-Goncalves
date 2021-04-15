@@ -1,3 +1,7 @@
+export const goToHomePage = (history) => {
+    history.push("/");
+  };
+
 export const goToListTripsPage = (history) => {
     history.push("/trips/list");
   };
@@ -21,3 +25,10 @@ export const goToAdminHomePage = (history) => {
 export const goToTripDetailsPage = (history) => {
     history.push("/admin/trips/:id");
   };
+
+export const goToLogout = (history) => {
+    window.localStorage.removeItem("token");  
+    history.push("/");
+  };
+
+ 
