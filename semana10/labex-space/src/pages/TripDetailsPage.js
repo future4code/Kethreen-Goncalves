@@ -3,10 +3,12 @@ import React, { useEffect, useState } from "react";
 import Header from "../Components/Header"
 import Footer from "../Components/Footer"
 import styled from "styled-components"
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import {TiArrowBackOutline} from "react-icons/ti"
 import { useProtectedPage} from "../hooks/useProtectedPage"
 import {goToLogout} from "../Routes/coordinator"
+import { urlAllTrips } from "../Components/url-api";
+
 
 
 
@@ -15,20 +17,20 @@ const TripDetailsPage = () =>  {
       const [tripDetail, setTripDetail] = useState([]);
       const [candidates, setCandidates] = useState([]);
       const [approved, setApproved] = useState([]);
+      const params = useParams();
       const history = useHistory();
-    
-      useEffect(() => {
-        getTripDetail("lWgQjG4CjOe6mSwlqkbJ");
-        
-      }, []);
 
-    
+      useEffect(() => {
+        getTripDetail();
+      },[params]);
+
+   
       const getTripDetail = (id) => {
         const token = window.localStorage.getItem("token");
     
         axios
           .get(
-            `https://us-central1-labenu-apis.cloudfunctions.net/labeX/kethreen-cruz/trip/${id}`,
+            `https://us-central1-labenu-apis.cloudfunctions.net/labeX/kethreen-cruz/trip/${params.id}`,
             {
               headers: {
                 auth: token
@@ -47,24 +49,26 @@ const TripDetailsPage = () =>  {
           });
       };
 
-      const decideCandidate= (id,candidatesId) => {
+      const decideCandidate= (id,candidatesId,aprov) => {
         const token = window.localStorage.getItem("token");
+        const body = {
+          approve: (aprov)
+      }
         
         axios
-          .put(
-            `https://us-central1-labenu-apis.cloudfunctions.net/labeX/kethreen-cruz/trips/${id}/candidates/${candidatesId}/decide`,
+          .put(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/kethreen-cruz/trips/${id}/candidates/${candidatesId}/decide`, body,
             {
               headers: {
                 auth: token
               }
             }
           )
-          .then((res) => {
-            console.log(res);
-           
+          .then((res) => { 
+            console.log("entrou na aprovacao");
           })
           .catch((err) => {
             console.log(err);
+            console.log("não entrou na aprovacao");
            
           });
       };
@@ -81,14 +85,13 @@ const TripDetailsPage = () =>  {
       );
 
      
-
       const getCandidates = candidates.map((iten) => (
         <li key={iten.id}>
             <h4><strong>Nome:</strong>{iten.name}</h4>
             <p><strong>Idade</strong> {iten.age}</p>
             <p><strong>Sobre:</strong> {iten.applicationText}</p>
             <p><strong>País:</strong> {iten.country} </p>
-            <button onClick={()=> decideCandidate("lWgQjG4CjOe6mSwlqkbJ","DU9hwngUH1bMPZHrICZb")}>Aprovar</button>
+            <button onClick={()=> decideCandidate("lWgQjG4CjOe6mSwlqkbJ","DU9hwngUH1bMPZHrICZb",true)}>Aprovar</button>
             <button>Rejeitar</button>
         </li>
       ));
@@ -103,7 +106,7 @@ const TripDetailsPage = () =>  {
     <div >
     <HeaderContainerListPage>
             <BackPage onClick={history.goBack} ><TiArrowBackOutline/></BackPage>
-            <Header/>
+            <Header />
             <button onClick={()=> goToLogout(history)} >logout</button>
         </HeaderContainerListPage>
 
@@ -132,6 +135,7 @@ const TripDetailsPage = () =>  {
 }
 
 export default TripDetailsPage;
+
 const MainAdminPage = styled.div`
 display:grid;
 grid-template-columns:1fr 2fr;

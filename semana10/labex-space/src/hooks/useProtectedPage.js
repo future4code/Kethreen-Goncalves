@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import  { useEffect, useLayoutEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 export const useProtectedPage = () => {
@@ -6,7 +6,7 @@ export const useProtectedPage = () => {
 
   useEffect(() => {
     const token = window.localStorage.getItem("token");
-
+ 
     if (!token) {
       history.push("/login");
     }
