@@ -1,12 +1,14 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  color: #f9f9f9;
+  font-family:'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
-  background-image: linear-gradient(0deg, #1f0a36 ,#909DBD 120%);
+  background-color:#CED0E2 ;
   /* background-image: url("./img/backgroundalabx.jpeg");
   background-repeat: no-repeat;
   background-size: cover; */
