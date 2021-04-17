@@ -8,24 +8,23 @@ import styled from "styled-components"
 import { goToAdminHomePage, goToHomePage } from "../Routes/coordinator"
 import {useProtectedLog} from "../hooks/useProtectedPage"
 import { urlLogin } from "../Components/url-api";
+import { useForm } from "../hooks/useForm";
 
+const initialForm = {
+  email:"",
+  password:"",
+ 
+};
 const LoginPage = () =>  {
     const history = useHistory();
     useProtectedLog();
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [form, onChange, resetForm] = useForm(initialForm);
 
-    const handleEmail = (e) => {
-        setEmail(e.target.value);
-    };
-    const handlePassword = (e) => {
-        setPassword(e.target.value);
-    };
-
-    const login = () =>{
+    const login = (event) =>{
+      event.preventDefault();
         const body = {
-            email:email,
-            password: password
+            email: form.email,
+            password: form.password
         }
         axios.post(urlLogin, body)
         .then((res) => {
@@ -37,7 +36,7 @@ const LoginPage = () =>  {
             console.log(err.message);
         })
     }
-
+ 
   return (
     <div>
         <HeaderContainerListPage>
@@ -45,19 +44,26 @@ const LoginPage = () =>  {
           <Header/>
         </HeaderContainerListPage>
         <MainLogin>
-          <Login> 
+          <Login onSubmit={login}> 
             <div>Login</div>
             <input 
+              required
+              name='email'
               placeholder="Email" 
-              value={email} 
-              onChange={handleEmail}>
+              value={form.email} 
+              onChange={onChange}
+              pattern={"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$"}
+              title={"Invalid e-mail"}>
             </input>
             <input 
+              required
+              name='password'
               placeholder="Password"
-              value={password} 
-              onChange={handlePassword}>
+              value={form.password} 
+              onChange={onChange}
+              type="password">
             </input>
-            <button onClick={login} >Login</button>
+            <button type="submit" >Login</button>
             <p>Área restrita para funcionários</p>
           </Login >
         </MainLogin>
@@ -91,7 +97,7 @@ const MainLogin = styled.div`
     flex-direction:column;
     height:75vh;
 `;
-const Login = styled.div`
+const Login = styled.form`
   display:flex;
   flex-direction:column;
   width:300px;

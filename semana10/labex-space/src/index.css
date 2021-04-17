@@ -7,11 +7,10 @@ body {
   font-family:'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-height: 100vh;
   background-color:#CED0E2 ;
-  /* background-image: url("./img/backgroundalabx.jpeg");
+  background-image: url("./img/backgroundalabx.jpeg");
   background-repeat: no-repeat;
-  background-size: cover; */
+  background-size: cover;
 
 }
 

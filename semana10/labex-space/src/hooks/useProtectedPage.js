@@ -1,4 +1,4 @@
-import  { useEffect, useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 export const useProtectedPage = () => {
@@ -6,7 +6,7 @@ export const useProtectedPage = () => {
 
   useEffect(() => {
     const token = window.localStorage.getItem("token");
- 
+
     if (!token) {
       history.push("/login");
     }
@@ -16,24 +16,15 @@ export const useProtectedPage = () => {
 // Não solicitar senha se ja estiver logado
 
 export const useProtectedLog = () => {
-    const history = useHistory();
-  
-    useLayoutEffect(() => {
-      const token = window.localStorage.getItem("token");
-  
-      if (!token) {
-        history.push("/login");
-      }else{
-          history.push("/admin/trips/list");
-      }
-    }, [history]);
-  };
-  
+  const history = useHistory();
 
+  useLayoutEffect(() => {
+    const token = window.localStorage.getItem("token");
 
-
-
-
-
-            
-        
+    if (!token) {
+      history.push("/login");
+    } else {
+      history.push("/admin/trips/list");
+    }
+  }, [history]);
+};
