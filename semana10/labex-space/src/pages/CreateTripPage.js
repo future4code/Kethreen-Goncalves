@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "../hooks/useForm";
 import axios from "axios";
-
+import swal from "sweetalert";
 import styled from "styled-components";
 import { urlAllTrips } from "../Components/url-api";
 
@@ -15,7 +15,15 @@ const initialForm = {
 
 const CreateTripPage = () => {
   const [form, onChange, resetForm] = useForm(initialForm);
+  const [ show, setShow] = useState(false);
 
+  const ShowHide = () =>{
+    if (show){
+     setShow(false) 
+    } else if (!show){
+      setShow(true)
+    } 
+  }
 
   const createTrip = (event) => {
     const token = window.localStorage.getItem("token");
@@ -29,19 +37,22 @@ const CreateTripPage = () => {
     };
     event.preventDefault();
     axios
-      .post(
-        `${urlAllTrips}`,body,
-        {
-          headers: {
-            auth: token,
-          },
-        }
-      )
+      .post(`${urlAllTrips}`, body, {
+        headers: {
+          auth: token,
+        },
+      })
       .then((response) => {
-        window.location.reload();
+        swal(
+          `A Viagem ${form.name}`,
+          "foi criada com sucesso!",
+          "success"
+        ).then(() => {
+          window.location.reload();
+        });
       })
       .catch((error) => {
-        alert(error);
+        swal(error, "Dados incompletos, retorne para o formulário!", "error");
       });
   };
 
@@ -54,9 +65,12 @@ const CreateTripPage = () => {
     ("0" + today.getDate()).substr(-2);
 
   return (
+    <ContainerFormCreateTrip>
+    <BtnShowCreateTrip onClick={()=> ShowHide()}> CRIAR UMA VIAGEM </BtnShowCreateTrip>
+    { show ? 
     <Form onSubmit={createTrip}>
-      <h2>CRIAR UMA NOVA VIAGEM</h2>
-      <label>Nome da Viagem:</label>
+      
+     
       <input
         required
         placeholder='Nome'
@@ -66,8 +80,7 @@ const CreateTripPage = () => {
         pattern={"^.{5,}$"}
         title={"Minimum 5 characters"}
       />
-      <label>Planeta:</label>
-      <select required name='planet' value={form.planet} onChange={onChange}>
+        <select required name='planet' value={form.planet} onChange={onChange}>
         <option value=''>Escolha um Planeta da lista</option>
         <option value='Mercurio'>Mercúrio</option>
         <option value='Venus'>Venus</option>
@@ -79,17 +92,15 @@ const CreateTripPage = () => {
         <option value='Netuno'>Netuno</option>
         <option value='Plutao'>Plutão</option>
       </select>
-      <label>Data:</label>
-      <input
+     <input
         placeholder='Data'
         name='date'
         onChange={onChange}
         value={form.date}
         type='date'
-        min={minToday }
+        min={minToday}
       />
-      <label>Descrição:</label>
-      <input
+          <input
         placeholder='Descrição'
         name='description'
         onChange={onChange}
@@ -97,17 +108,18 @@ const CreateTripPage = () => {
         pattern={"^.{30,}$"}
         title={"Minimum 30 characters"}
       />
-      <label>Duração:</label>
-      <input
+        <input
         placeholder='Duração em Dias'
         name='durationInDays'
         onChange={onChange}
         value={form.durationInDays}
         type='number'
-        min="50"
+        min='50'
       />
-      <button type="submit">CRIAR</button>
-    </Form>
+      <button type='submit'>CRIAR</button>
+    </Form> :null
+  } 
+    </ContainerFormCreateTrip>
   );
 };
 
@@ -115,45 +127,82 @@ export default CreateTripPage;
 
 // CSS STYLED COMPONENTS
 
+const BtnShowCreateTrip = styled.button`
+display:flex;
+flex-direction:column;
+align-items:center;
+width: clamp(100px, 60%, 250px);
+height:30px;
+background-color: rgba(30, 31, 33, 0.4);
+font-weight: 900;
+color: #f9f9f9;
+
+align-self: center;
+font-size: 1rem;
+cursor: pointer;
+border-top: 2px solid #eceff2;
+border-left: 2px solid #eceff2;
+
+`;
+
+const ContainerFormCreateTrip = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: clamp(300px, 80%, 600px);
+   height:clamp(450px, 80%, 900px);
+   
+  
+`;
+
+
+
 const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: clamp(320px, 80%, 700px);
-  height: clamp(300px, 60%, 1000px);
-  padding: 3%;
-  background-color: rgba(250, 252, 255,0.2);
+  width: 80%;
+  background-color: rgba(250, 252, 255, 0.2);
   box-shadow: inset 0 0 1em silver;
-  border-radius:50px;
+  padding: 2%;
+  border-radius: 30px;
+  @keyframes entrace {
   
-  select{
+  80%{
+      transform: translateX(0px) translateY(10px);
+      opacity: 1;
+    }
+  20%{
+      transform: translateX(0px)  translateY(50px);
+      opacity: 1;
+  }
+}
+animation: entrace 0.6s;
+
+  select {
     font-size: 1.4rem;
     margin: 1%;
-    width: 80%;
-    border-radius:10px;
-    background-color:#313131;
-    color:white;
+    width: 100%;
+    border-radius: 10px;
+    background-color: #313131;
+    color: white;
   }
-  label{
-    align-self:flex-start;
-    margin-left:10%;
-    font-size: 1.3rem;
-    color:white;
-    }
+
   input {
     font-size: 1.4rem;
     margin: 1%;
-    width: 80%;
-    border-radius:10px;
-    background-color:#313131;
-    color:white;
-    ::placeholder{
+    width: 100%;
+    border-radius: 10px;
+    background-color: #313131;
+    color: white;
+    ::placeholder {
       font-size: 0.9rem;
-      color:white;
+      color: white;
     }
   }
-    button {
+  button {
     width: clamp(50px, 30%, 200px);
     height: 40px;
     background-color: rgba(30, 31, 33, 0.4);
@@ -169,8 +218,6 @@ const Form = styled.form`
       background-color: rgba(72, 32, 125, 0.7);
       transform: scale(1.1);
       transition: all 0.4s ease;
-  }
-  
-  
+    }
   }
 `;

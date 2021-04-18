@@ -63,7 +63,7 @@ const CardTrip = styled.div`
   border-radius: 20px;
   padding: 1%;
   margin: 1%;
-  background-color: rgba(30, 31, 33,0.8);
+  background-color: rgba(30, 31, 33, 0.8);
   box-shadow: inset 0 0 1em silver;
   font-weight: 900;
 `;
@@ -71,13 +71,13 @@ const HeaderContainerListPage = styled.div`
   display: grid;
   grid-template-columns: 1fr 7fr 2fr;
   width: 100vw;
-  background-color: rgba(250, 252, 255,0.3);
+  background-color: rgba(250, 252, 255, 0.3);
   box-shadow: inset 0 0 1em silver;
-  @media(max-width: 800px) {
+  @media (max-width: 800px) {
     grid-template-columns: 1fr 5fr;
     grid-template-rows: 1fr 1fr;
-    height:20vh;
-    }
+    height: 20vh;
+  }
   button {
     width: clamp(100px, 90%, 450px);
     height: 50px;
@@ -95,12 +95,12 @@ const HeaderContainerListPage = styled.div`
       transform: scale(1.1);
       transition: all 0.4s ease;
     }
-    @media(max-width: 800px) {
-    grid-column: span 2; 
-    margin-top:0;
-    justify-self:center;
-    width:80%;
-    height:100%
+    @media (max-width: 800px) {
+      grid-column: span 2;
+      margin-top: 0;
+      justify-self: center;
+      width: 80%;
+      height: 100%;
     }
   }
 `;
@@ -116,16 +116,15 @@ const MainListTrips = styled.div`
   height: 75vh;
   overflow: auto;
   h1 {
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+    font-size: clamp(20px, 20%, 800px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-
   }
 `;
 const GridCardTrips = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  
 `;

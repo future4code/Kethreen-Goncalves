@@ -21,9 +21,10 @@ const HeaderContainer = styled.div`
   align-items: center;
   height: 15vh;
   img {
-    width:clamp(300px, 30%, 1000px);
+    width:clamp(260px, 30%, 1000px);
     height: auto;
     cursor: pointer;
+    
     :hover{
     transform: scale(1.1);
     transition: all 0.8s ease-in;

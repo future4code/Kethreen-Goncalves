@@ -10,6 +10,7 @@ import { goToListTripsPage } from "../Routes/coordinator";
 import useRequestData from "../hooks/userRequestData";
 import { useForm } from "../hooks/useForm";
 import { countryToWord } from "../Components/countryWord";
+import swal from "sweetalert";
 
 const initialForm = {
   name: "",
@@ -34,16 +35,13 @@ const ApplicationFormPage = () => {
       country: form.country,
     };
     axios
-      .post(
-        `${urlAllTrips}${form.tripSelect}/apply`,
-        body
-      )
+      .post(`${urlAllTrips}${form.tripSelect}/apply`, body)
       .then((res) => {
-        alert(`Inscrição realizada com sucesso!`);
+        swal("Inscrição realizada!", "Agora é só aguardar!", "success");
         goToListTripsPage(history);
       })
       .catch((err) => {
-        alert(err.message);
+        swal("Oops", "Dados incompletos, retorne para o formulário!", "error");
       });
   };
 
@@ -56,14 +54,13 @@ const ApplicationFormPage = () => {
         </option>
       );
     });
-    const getCountry =
-   countryToWord.map((country) => {
-      return (
-        <option key={country.codigo} value={country.nome}>
-          {country.nome} - {country.sigla3}
-        </option>
-      );
-    });
+  const getCountry = countryToWord.map((country) => {
+    return (
+      <option key={country.codigo} value={country.nome}>
+        {country.nome} - {country.sigla3}
+      </option>
+    );
+  });
 
   return (
     <div>
@@ -75,10 +72,16 @@ const ApplicationFormPage = () => {
       </HeaderContainerListPage>
 
       <MainApplicationForm>
-        <div>FAÇA A SUA INSCRIÇÃO</div>
+      
 
         <form onSubmit={applicationToTrip}>
-          <select required name='tripSelect' value={form.tripSelect} onChange={onChange}>
+          <p>FAÇA A SUA INSCRIÇÃO</p>
+          <select
+            required
+            name='tripSelect'
+            value={form.tripSelect}
+            onChange={onChange}
+          >
             <option value=''>escolha uma viagem</option>
             {getTrips}
           </select>
@@ -97,7 +100,7 @@ const ApplicationFormPage = () => {
             name='age'
             value={form.age}
             required
-            min="18"
+            min='18'
             onChange={onChange}
           ></input>
           <input
@@ -118,12 +121,17 @@ const ApplicationFormPage = () => {
             title={"Minimum 30 characters"}
             onChange={onChange}
           ></input>
-          <select required name='country' value={form.country} onChange={onChange}>
+          <select
+            required
+            name='country'
+            value={form.country}
+            onChange={onChange}
+          >
             <option value=''>Selecione seu País</option>
             {getCountry}
           </select>
-          
-          <button type="submit" >ENVIAR</button>
+
+          <button type='submit'>ENVIAR</button>
         </form>
       </MainApplicationForm>
       <Footer />
@@ -136,52 +144,56 @@ export default ApplicationFormPage;
 const MainApplicationForm = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  align-self: center;
-  gap: 5%;
-  justify-content: center;
-  width: clamp(320px, 80%, 700px);
-  height: clamp(300px, 60%, 1000px);
+  align-items: center; 
+  height:75vh;
+  font-size: 1.3rem;
+  font-weight: 900;
+
+  form{
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  width: clamp(300px, 80%, 700px);
+  height: clamp(400px, 60%, 1000px);
   padding: 3%;
-  background-color: rgba(250, 252, 255,0.2);
+  background-color: rgba(250, 252, 255, 0.2);
   box-shadow: inset 0 0 1em silver;
-  border-radius:50px;
-  select{
-    font-size: 1.4rem;
+  border-radius: 50px;
+  select {
+    font-size: 1.2rem;
     margin: 1%;
     width: 80%;
-    border-radius:10px;
-    background-color:#313131;
-    color:white;
+    border-radius: 10px;
+    background-color: #313131;
+    color: white;
   }
-  label{
-    align-self:flex-start;
-    margin-left:10%;
+  label {
+    align-self: flex-start;
+    margin-left: 10%;
     font-size: 1.3rem;
-    color:white;
-    }
+    color: white;
+  }
   input {
     font-size: 1.4rem;
     margin: 1%;
     width: 80%;
-    border-radius:10px;
-    background-color:#313131;
-    color:white;
-    ::placeholder{
+    border-radius: 10px;
+    background-color: #313131;
+    color: white;
+    ::placeholder {
       font-size: 0.9rem;
-      color:white;
+      color: white;
     }
-    
   }
   button {
-    width: clamp(100px, 50%, 450px);
+    width: clamp(60px, 30%, 250px);
     height: 50px;
     background-color: rgba(30, 31, 33, 0.4);
-    font-weight: 900;
+    font-weight: 400;
     color: #f9f9f9;
     border-radius: 50px;
     align-self: center;
-    font-size: 1.1rem;
+    font-size: 1rem;
     cursor: pointer;
     border-top: 2px solid #eceff2;
     border-left: 2px solid #eceff2;
@@ -191,7 +203,8 @@ const MainApplicationForm = styled.div`
       transition: all 0.4s ease;
     }
   }
-  `;
+}
+`;
 const HeaderContainerListPage = styled.div`
   display: grid;
   grid-template-columns: 1fr 7fr 2fr;
@@ -203,4 +216,9 @@ const BackPage = styled.div`
   flex-direction: column;
   font-size: 70px;
   margin: 10%;
+  cursor: pointer;
+  :hover {
+      transform: scale(1.1);
+      transition: all 0.6s ease;
+    }
 `;

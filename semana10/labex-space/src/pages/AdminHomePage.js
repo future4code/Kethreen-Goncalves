@@ -11,6 +11,7 @@ import CreateTripPage from "../pages/CreateTripPage";
 import { FaTrashAlt } from "react-icons/fa";
 import { TiArrowBackOutline } from "react-icons/ti";
 import axios from "axios";
+import swal from "sweetalert";
 
 const AdminHomePage = () => {
   useProtectedPage();
@@ -23,23 +24,38 @@ const AdminHomePage = () => {
 
   const deleteTrip = (trip, name) => {
     const token = window.localStorage.getItem("token");
-    axios
-      .delete(
-        `${urlAllTrips}${trip}`,
-        {
-          headers: {
-            auth: token,
-          },
-        }
-      )
-      .then((response) => {
-        alert(`A Viagem ${name} foi deletada!`);
-        window.location.reload();
-      })
-      .catch((error) => {
-        alert(`Não foi possível executar o comando, tente mais tarde!`);
-        goToHomePage(history);
-      });
+    swal({
+      title: `Deseja deletar a viagem ${name}?`,
+      text:
+        "Essa viagem será deletada junto com todos os dados de inscritos e aprovados!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        axios
+          .delete(`${urlAllTrips}${trip}`, {
+            headers: {
+              auth: token,
+            },
+          })
+          .then((response) => {
+            swal(
+              `A Viagem ${name}`,
+              "foi deletada com sucesso!",
+              "success"
+            ).then(() => {
+              window.location.reload();
+            });
+          })
+          .catch((error) => {
+            alert(`Não foi possível executar o comando, tente mais tarde!`);
+            goToHomePage(history);
+          });
+      } else {
+        swal("ok, Nada foi deletado!");
+      }
+    });
   };
 
   const getTrips =
@@ -59,7 +75,9 @@ const AdminHomePage = () => {
             </p>
           </DadosTripContainer>
           <DeleteContainer onClick={() => deleteTrip(iten.id, iten.name)}>
-            <FaTrashAlt />
+            <p>
+              <FaTrashAlt />
+            </p>
           </DeleteContainer>
         </TripContainer>
       );
@@ -75,10 +93,10 @@ const AdminHomePage = () => {
         <button onClick={() => goToLogout(history)}>logout</button>
       </HeaderContainerListPage>
       <MainDetails>
-        <div>
+        <TripsToChoose>
           <h3>Lista de Viagens</h3>
           <GridCardTrips>{getTrips}</GridCardTrips>
-        </div>
+        </TripsToChoose>
         <CreateTripPage />
       </MainDetails>
       <Footer />
@@ -92,21 +110,36 @@ const GridCardTrips = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  overflow: auto;
+ 
 `;
 const MainDetails = styled.div`
   display: grid;
   grid-template-columns: 4fr 2fr;
   height: 75vh;
-div{
-    overflow: auto;
-}
+  justify-items:center ;
+  align-items:center ;
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+    overflow:auto;
+  }
+  
+`;
+const TripsToChoose = styled.div`
+ width: 100%;
+height: 100%;
+overflow:auto;
+@media (max-width: 800px) {
+  overflow:scroll;
+    grid-column-start: 1/1;
+  }
+
+
 `;
 const HeaderContainerListPage = styled.div`
   display: grid;
   grid-template-columns: 1fr 7fr 2fr;
   width: 100vw;
-  background-color: rgba(250, 252, 255,0.3);
+  background-color: rgba(250, 252, 255, 0.3);
   box-shadow: inset 0 0 1em silver;
   button {
     width: clamp(100px, 50%, 450px);
@@ -125,12 +158,12 @@ const HeaderContainerListPage = styled.div`
       transform: scale(1.1);
       transition: all 0.4s ease;
     }
-    @media(max-width: 800px) {
-    grid-column: span 2; 
-    margin-top:0;
-    justify-self:center;
-    width:80%;
-    height:100%
+    @media (max-width: 800px) {
+      grid-column: span 2;
+      margin-top: 0;
+      justify-self: center;
+      width: 80px;
+      height: 100%;
     }
   }
 `;
@@ -139,17 +172,22 @@ const BackPage = styled.div`
   flex-direction: column;
   font-size: 70px;
   margin: 10%;
+  cursor: pointer;
+  :hover {
+      transform: scale(1.1);
+      transition: all 0.6s ease;
+    }
 `;
 const TripContainer = styled.div`
   display: grid;
-  grid-template-columns: 10fr 1fr;
+  grid-template-columns: 10fr 2fr;
   align-content: center;
   width: clamp(350px, 25%, 800px);
   border: 1px solid white;
   border-radius: 20px;
   padding: 1%;
   margin: 1%;
-  background-color: rgba(30, 31, 33,0.8);
+  background-color: rgba(30, 31, 33, 0.8);
   box-shadow: inset 0 0 1em silver;
   font-weight: 900;
 `;
@@ -163,7 +201,13 @@ const DadosTripContainer = styled.div`
   }
 `;
 const DeleteContainer = styled.div`
-  padding-top: 150%;
+  padding-top: 50%;
   text-align: center;
-  cursor: pointer;
+  p {
+    cursor: pointer;
+    :hover {
+      transform: scale(1.8);
+      transition: all 0.6s ease-in;
+    }
+  }
 `;
