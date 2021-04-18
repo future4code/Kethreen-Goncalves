@@ -20,6 +20,7 @@ const HeaderContainer = styled.div`
   flex-direction: column;
   align-items: center;
   height: 15vh;
+
   img {
     width:clamp(260px, 30%, 1000px);
     height: auto;

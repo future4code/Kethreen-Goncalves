@@ -156,7 +156,7 @@ const MainApplicationForm = styled.div`
   width: clamp(300px, 80%, 700px);
   height: clamp(400px, 60%, 1000px);
   padding: 3%;
-  background-color: rgba(250, 252, 255, 0.2);
+  background-color: rgba(250, 252, 255, 0.1);
   box-shadow: inset 0 0 1em silver;
   border-radius: 50px;
   select {
@@ -209,6 +209,7 @@ const HeaderContainerListPage = styled.div`
   display: grid;
   grid-template-columns: 1fr 7fr 2fr;
   width: 100vw;
+  background-color: rgba(250, 252, 255, 0.3);
 `;
 
 const BackPage = styled.div`

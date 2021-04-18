@@ -137,12 +137,12 @@ display:flex;
 flex-direction:column;
 align-items:center;
 width: clamp(100px, 90%, 500px);
-height:30px;
-background-color: rgba(30, 31, 33, 0.4);
+height:50px;
+background-color: rgba(30, 31, 33, 0.8);
 font-weight: 900;
 color: #f9f9f9;
 align-self: center;
-font-size: 1rem;
+font-size: 1.8rem;
 cursor: pointer;
 border-top: 2px solid #eceff2;
 border-left: 2px solid #eceff2;
@@ -150,7 +150,10 @@ border-left: 2px solid #eceff2;
       background-color: rgba(72, 32, 125, 0.7);
       transition: all 0.4s ease;
 }
-
+@media (max-width: 800px) {
+  font-size: 1.1rem;
+    height: 30px;
+  }
 `;
 
 const ContainerFormCreateTrip = styled.div`

@@ -45,11 +45,15 @@ const ListTripsPage = () => {
           INSCREVA-SE EM UMA VIAGEM
         </button>
       </HeaderContainerListPage>
+
       <MainListTrips>
         <h1>PRÓXIMAS VIAGENS</h1>
         <GridCardTrips>{getTrips}</GridCardTrips>
       </MainListTrips>
-      <Footer />
+      
+     
+     <Footer />
+     
     </div>
   );
 };

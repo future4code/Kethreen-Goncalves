@@ -5,7 +5,7 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import Login from "../img/login.png";
 import styled from "styled-components";
-import background from "../img/backgroundalabx.jpeg";
+import bcgroundGif from "../img/espaco.gif"
 
 const HomePages = () => {
   const history = useHistory();
@@ -53,7 +53,9 @@ const HomePages = () => {
 export default HomePages;
 
 const AppHome = styled.div`
-  background-image: linear-gradient(0deg, #1f0a36, #909dbd 120%);
+  background-image: url(${bcgroundGif});
+  background-repeat: no-repeat;
+  background-size: cover;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -63,6 +65,7 @@ const AppHome = styled.div`
   justify-items:center;
   border-radius: 30px;
   box-shadow: 4px 10px 30px #261d1d;
+
 `;
 
 const MainContainerHome = styled.main`
@@ -107,7 +110,6 @@ const SpaceContainer = styled.div`
   justify-content: center;
   width: clamp(250px, 300px, 400px);
   height: clamp(250px, 300px, 400px);
-  background: url(${background});
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 50%;
@@ -121,8 +123,8 @@ const SpaceContainer = styled.div`
   button {
     width: clamp(230px, 30%, 450px);
     height: 70px;
-    background-color: rgba(250, 252, 252, 0.2);
-    color: #f9f9f9;
+    background-color: rgba(250, 252, 252, 0.7);
+    color: black;
     border-radius: 50px;
     align-self: center;
     font-size: 1.5rem;

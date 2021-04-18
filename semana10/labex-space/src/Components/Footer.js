@@ -46,6 +46,7 @@ const FooterContainer = styled.div`
   justify-items: center;
   align-items: center;
   text-decoration:none; 
+  background-color: rgba(250, 252, 255, 0.1);
   div {
     display: flex;
     flex-direction: row;

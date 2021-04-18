@@ -10,6 +10,7 @@ import { useProtectedLog } from "../hooks/useProtectedPage";
 import { urlLogin } from "../Components/url-api";
 import { useForm } from "../hooks/useForm";
 import swal from "sweetalert";
+import bcgroundmobile from "../img/bcgrounsmart.jpg"
 
 const initialForm = {
   email: "",
@@ -39,7 +40,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
+    <LoginPageApp>
       <HeaderContainerListPage>
         <BackPage onClick={() => goToHomePage(history)}>
           <TiArrowBackOutline />
@@ -67,11 +68,11 @@ const LoginPage = () => {
             type='password'
           ></input>
           <button type='submit'>Login</button>
-          <p>Área restrita para funcionários</p>
+          <p>Área Administrativa</p>
         </Login>
       </MainLogin>
       <Footer />
-    </div>
+    </LoginPageApp>
   );
 };
 
@@ -79,10 +80,16 @@ export default LoginPage;
 
 // CSS STYLED COMPONENTS =>
 
+const LoginPageApp = styled.div`
+@media (max-width: 800px) {
+    background-image: url(${bcgroundmobile});
+  }
+`;
 const HeaderContainerListPage = styled.div`
   display: grid;
   grid-template-columns: 1fr 7fr 2fr;
   width: 100vw;
+  background-color: rgba(250, 252, 255, 0.4);
   button {
     margin: 10%;
     width: 60%;
@@ -119,6 +126,9 @@ const Login = styled.form`
   background-color: rgba(250, 252, 255, 0.1);
   box-shadow: inset 0 0 1em silver;
   border-radius: 50px;
+  background-image: url(${bcgroundmobile});
+background-repeat: no-repeat;
+background-size: cover;
   h2{
 
   }

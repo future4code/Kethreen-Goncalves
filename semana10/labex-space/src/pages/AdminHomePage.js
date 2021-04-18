@@ -96,7 +96,7 @@ const AdminHomePage = () => {
       <MainDetails>
         <CreateTripPage />
         <TripsToChoose>
-          <h3>Lista de Viagens</h3>
+          <h3>PRÓXIMAS VIAGENS</h3>
           <GridCardTrips>{getTrips}</GridCardTrips>
         </TripsToChoose>
       </MainDetails>
@@ -133,8 +133,15 @@ overflow:auto;
   overflow:scroll;
     grid-column-start: 1/1;
   }
-
-
+h3{
+  margin-left:10%;
+  display: inline-flexbox;
+  background-color: rgba(30, 31, 33, 0.9);
+  font-size: 1.6rem;
+  @media (max-width: 800px) {
+    font-size: 1rem;
+  }
+}
 `;
 const HeaderContainerListPage = styled.div`
   display: grid;
@@ -145,7 +152,7 @@ const HeaderContainerListPage = styled.div`
   button {
     width: clamp(100px, 50%, 450px);
     height: 50px;
-    background-color: rgba(30, 31, 33, 0.4);
+    background-color: rgba(30, 31, 33, 0.9);
     font-weight: 900;
     color: #f9f9f9;
     border-radius: 50px;
@@ -188,7 +195,7 @@ const TripContainer = styled.div`
   border-radius: 20px;
   padding: 1%;
   margin: 1%;
-  background-color: rgba(30, 31, 33, 0.8);
+  background-color: rgba(30, 31, 33, 0.3);
   box-shadow: inset 0 0 1em silver;
   font-weight: 900;
 `;

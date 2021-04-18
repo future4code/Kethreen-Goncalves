@@ -215,7 +215,7 @@ const HeaderContainerListPage = styled.div`
   button {
     width: clamp(70px, 50%, 450px);
     height: 50px;
-    background-color: rgba(30, 31, 33, 0.4);
+    background-color: rgba(30, 31, 33, 0.8);
     font-weight: 900;
     color: #f9f9f9;
     border-radius: 50px;
@@ -255,14 +255,14 @@ const CardDetail = styled.div`
   height: clamp(220px, 30%, 500px);
   padding: 2%;
   border-radius: 20px;
-  background-color: rgba(30, 31, 33, 0.8);
+  background-color: rgba(30, 31, 33, 0.4);
   box-shadow: inset 0 0 1em silver;
 `;
 const CardCandidates = styled.li`
   width: clamp(300px, 80%, 500px);
   padding: 2%;
   border-radius: 20px;
-  background-color: rgba(30, 31, 33, 0.8);
+  background-color: rgba(30, 31, 33, 0.4);
   box-shadow: inset 0 0 1em silver;
   
    
