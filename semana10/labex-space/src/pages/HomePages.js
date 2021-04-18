@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import { useHistory } from "react-router-dom";
 import { goToListTripsPage, goToLoginPage } from "../Routes/coordinator";
 import Header from "../Components/Header";
@@ -7,25 +7,10 @@ import Login from "../img/login.png";
 import styled from "styled-components";
 import bcgroundGif from "../img/espaco.gif"
 
+
 const HomePages = () => {
   const history = useHistory();
-  const user = window.localStorage.getItem("user");
-  const [printUser, setPrintUser] = useState("Área Administrativa");
-  const token = window.localStorage.getItem("token");
-
-  useEffect(() => {
-    logUser();
-  });
-
-  function logUser() {
-    if (token) {
-      let log = user;
-      let n = log.indexOf("@");
-      let x = log.substring(n, -n);
-      setPrintUser(`Olá, ${x}!`);
-    }
-  }
-
+  
   return (
     <AppHome>
       <Header />
@@ -37,7 +22,7 @@ const HomePages = () => {
             title='Área Administrativa'
             src={Login}
           />
-          <p onClick={() => goToLoginPage(history)}>{printUser}</p>
+          <p onClick={() => goToLoginPage(history)}>Administrativo</p>
         </section>
         <SpaceContainer>
           <button onClick={() => goToListTripsPage(history)}>
