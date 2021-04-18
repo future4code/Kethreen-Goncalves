@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
 import { TiArrowBackOutline } from "react-icons/ti";
 import { useHistory } from "react-router-dom";
@@ -18,8 +18,7 @@ const initialForm = {
 const LoginPage = () => {
   const history = useHistory();
   useProtectedLog();
-  const user = window.localStorage.getItem("user");
-  const [form, onChange, resetForm] = useForm(initialForm);
+  const [form, onChange] = useForm(initialForm);
 
   const login = (event) => {
     event.preventDefault();
@@ -31,9 +30,8 @@ const LoginPage = () => {
       .post(urlLogin, body)
       .then((res) => {
         window.localStorage.setItem("token", res.data.token);
-        window.localStorage.setItem("user", res.data.user.email);
         goToAdminHomePage(history);
-        swal(`Olá ${user}!`, "Você tem acesso para criar/excluir viagens, e aprovar ou reprovar os candidatos", "success")
+        swal(`Bem Vindo!`, "Você tem acesso para criar/excluir viagens, e aprovar ou reprovar os candidatos", "success")
       })
       .catch((err) => {
         swal("Oops", "E-mail ou Senha incorretos, preencha os dados corretamente!", "error");

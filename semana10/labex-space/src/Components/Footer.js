@@ -11,22 +11,22 @@ const Footer = () => {
   return (
     <FooterContainer>
       <div>
-        <a target='_blank' href='https://www.instagram.com/'>
+        <a  rel="noreferrer" href='https://www.instagram.com/' target='_blank'>
           {" "}
           <ImInstagram />
         </a>
 
-        <a target='_blank' href='https://www.twitter.com/'>
+        <a rel="noreferrer" href='https://www.twitter.com/'target='_blank' >
           {" "}
           <ImTwitter />
         </a>
 
-        <a target='_blank' href='https://www.whatsapp.com/'>
+        <a rel="noreferrer"  href='https://www.whatsapp.com/'target='_blank'>
           {" "}
           <ImWhatsapp />
         </a>
 
-        <a target='_blank' href='https://www.facebook.com/' >
+        <a rel="noreferrer"  href='https://www.facebook.com/' target='_blank'>
           <ImFacebook2 />
         </a>
       </div>

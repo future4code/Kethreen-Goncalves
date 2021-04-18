@@ -23,7 +23,7 @@ const initialForm = {
 const ApplicationFormPage = () => {
   const history = useHistory();
   const listTrips = useRequestData(urlAllTrips, []);
-  const [form, onChange, resetForm] = useForm(initialForm);
+  const [form, onChange] = useForm(initialForm);
 
   const applicationToTrip = (event) => {
     event.preventDefault();

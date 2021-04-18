@@ -127,17 +127,17 @@ const TripDetailsPage = () => {
   const getCandidates = candidates.map((iten) => (
     <CardDetail key={iten.id}>
       <h4>
-        <strong>Nome:</strong>
-        {iten.name}
+        <strong>Nome: </strong>
+        {iten.name}, {iten.age} anos
       </h4>
       <p>
-        <strong>Idade</strong> {iten.age}
+        <strong>Profissão: </strong> {iten.profession}
       </p>
       <p>
-        <strong>Sobre:</strong> {iten.applicationText}
+        <strong>Sobre: </strong> {iten.applicationText}
       </p>
       <p>
-        <strong>País:</strong> {iten.country}{" "}
+        <strong>País: </strong> {iten.country}{" "}
       </p>
       <ApprovButton onClick={() => aproveCandidate(iten.id, iten.name, true)}>
         Aprovar
@@ -230,11 +230,12 @@ const HeaderContainerListPage = styled.div`
       transition: all 0.4s ease;
     }
     @media (max-width: 800px) {
-      grid-column: span 2;
-      margin-top: 0;
+      grid-column-start:span 3;
+      margin-bottom:10%;
+      margin-left:60%;
       justify-self: center;
-      width: 80px;
-      height: 100%;
+      width: 90px;
+      height: 50%;
     }
   }
 `;
@@ -259,7 +260,6 @@ const CardDetail = styled.div`
 `;
 const CardCandidates = styled.li`
   width: clamp(300px, 80%, 500px);
-  height: clamp(30px, 30%, 500px);
   padding: 2%;
   border-radius: 20px;
   background-color: rgba(30, 31, 33, 0.8);

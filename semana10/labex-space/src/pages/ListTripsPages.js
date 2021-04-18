@@ -42,7 +42,7 @@ const ListTripsPage = () => {
         </BtnBackPage>
         <Header />
         <button onClick={() => goToApplicationFormPage(history)}>
-          INCREVA-SE EM UMA VIAGEM
+          INSCREVA-SE EM UMA VIAGEM
         </button>
       </HeaderContainerListPage>
       <MainListTrips>

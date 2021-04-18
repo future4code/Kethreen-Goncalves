@@ -22,6 +22,7 @@ const AdminHomePage = () => {
     history.push(`/admin/trips/${id}`);
   };
 
+
   const deleteTrip = (trip, name) => {
     const token = window.localStorage.getItem("token");
     swal({
@@ -93,11 +94,11 @@ const AdminHomePage = () => {
         <button onClick={() => goToLogout(history)}>logout</button>
       </HeaderContainerListPage>
       <MainDetails>
+        <CreateTripPage />
         <TripsToChoose>
           <h3>Lista de Viagens</h3>
           <GridCardTrips>{getTrips}</GridCardTrips>
         </TripsToChoose>
-        <CreateTripPage />
       </MainDetails>
       <Footer />
     </div>
@@ -114,7 +115,7 @@ const GridCardTrips = styled.div`
 `;
 const MainDetails = styled.div`
   display: grid;
-  grid-template-columns: 4fr 2fr;
+
   height: 75vh;
   justify-items:center ;
   align-items:center ;
@@ -159,11 +160,11 @@ const HeaderContainerListPage = styled.div`
       transition: all 0.4s ease;
     }
     @media (max-width: 800px) {
-      grid-column: span 2;
-      margin-top: 0;
+      margin-bottom:-70%;
+      margin-left:0;
       justify-self: center;
       width: 80px;
-      height: 100%;
+      height: 30%;
     }
   }
 `;

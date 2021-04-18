@@ -5,6 +5,7 @@ import swal from "sweetalert";
 import styled from "styled-components";
 import { urlAllTrips } from "../Components/url-api";
 
+
 const initialForm = {
   name: "",
   planet: "",
@@ -14,8 +15,9 @@ const initialForm = {
 };
 
 const CreateTripPage = () => {
-  const [form, onChange, resetForm] = useForm(initialForm);
+  const [form, onChange] = useForm(initialForm);
   const [ show, setShow] = useState(false);
+ 
 
   const ShowHide = () =>{
     if (show){
@@ -24,6 +26,8 @@ const CreateTripPage = () => {
       setShow(true)
     } 
   }
+
+
 
   const createTrip = (event) => {
     const token = window.localStorage.getItem("token");
@@ -48,6 +52,7 @@ const CreateTripPage = () => {
           "foi criada com sucesso!",
           "success"
         ).then(() => {
+          ShowHide();
           window.location.reload();
         });
       })
@@ -131,17 +136,20 @@ const BtnShowCreateTrip = styled.button`
 display:flex;
 flex-direction:column;
 align-items:center;
-width: clamp(100px, 60%, 250px);
+width: clamp(100px, 90%, 500px);
 height:30px;
 background-color: rgba(30, 31, 33, 0.4);
 font-weight: 900;
 color: #f9f9f9;
-
 align-self: center;
 font-size: 1rem;
 cursor: pointer;
 border-top: 2px solid #eceff2;
 border-left: 2px solid #eceff2;
+:hover {
+      background-color: rgba(72, 32, 125, 0.7);
+      transition: all 0.4s ease;
+}
 
 `;
 
@@ -167,19 +175,19 @@ const Form = styled.form`
   background-color: rgba(250, 252, 255, 0.2);
   box-shadow: inset 0 0 1em silver;
   padding: 2%;
-  border-radius: 30px;
+  border-radius: 10px;
   @keyframes entrace {
   
-  80%{
-      transform: translateX(0px) translateY(10px);
+  0%{
+      transform: translateX(0px) translateY(-80px);
       opacity: 1;
     }
-  20%{
-      transform: translateX(0px)  translateY(50px);
+  100%{
+      transform: translateX(0px)  translateY(0px);
       opacity: 1;
   }
 }
-animation: entrace 0.6s;
+animation: entrace 1s;
 
   select {
     font-size: 1.4rem;
