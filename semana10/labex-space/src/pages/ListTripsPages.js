@@ -8,9 +8,10 @@ import Footer from "../Components/Footer";
 import { TiArrowBackOutline } from "react-icons/ti";
 import styled from "styled-components";
 
-const ListTripsPage = () => {
+const ListTripsPage = (props) => {
   const history = useHistory();
-  const listTrips = useRequestData(urlAllTrips, []);
+  const listTrips = useRequestData(urlAllTrips, history,  []);
+  
 
   const getTrips =
     listTrips.trips &&
@@ -36,6 +37,7 @@ const ListTripsPage = () => {
 
   return (
     <div>
+   
       <HeaderContainerListPage>
         <BtnBackPage onClick={history.goBack}>
           <TiArrowBackOutline />
@@ -45,15 +47,16 @@ const ListTripsPage = () => {
           INSCREVA-SE EM UMA VIAGEM
         </button>
       </HeaderContainerListPage>
-
-      <MainListTrips>
+        <MainListTrips>
         <h1>PRÓXIMAS VIAGENS</h1>
         <GridCardTrips>{getTrips}</GridCardTrips>
-      </MainListTrips>
+      </MainListTrips> 
+      
+      
       
      
-     <Footer />
-     
+     <Footer /> 
+      
     </div>
   );
 };
@@ -118,6 +121,7 @@ const MainListTrips = styled.div`
   display: flex;
   flex-direction: column;
   height: 75vh;
+  background-color: rgba(30, 31, 33, 0.6);
   overflow: auto;
   h1 {
     font-size: clamp(20px, 20%, 800px);

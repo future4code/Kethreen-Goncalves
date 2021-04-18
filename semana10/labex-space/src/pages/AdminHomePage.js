@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useProtectedPage } from "../hooks/useProtectedPage";
 import { goToLogout, goToHomePage } from "../Routes/coordinator";
@@ -16,12 +16,11 @@ import swal from "sweetalert";
 const AdminHomePage = () => {
   useProtectedPage();
   const history = useHistory();
-  const listTrips = useRequestData(urlAllTrips, []);
-
+  const [reload, setReload] = useState(false);
+  const listTrips = useRequestData(urlAllTrips, reload, []);
   const goToDetailsPage = (id) => {
     history.push(`/admin/trips/${id}`);
   };
-
 
   const deleteTrip = (trip, name) => {
     const token = window.localStorage.getItem("token");
@@ -46,7 +45,7 @@ const AdminHomePage = () => {
               "foi deletada com sucesso!",
               "success"
             ).then(() => {
-              window.location.reload();
+             !reload ? setReload(true): setReload(false)
             });
           })
           .catch((error) => {
@@ -94,7 +93,7 @@ const AdminHomePage = () => {
         <button onClick={() => goToLogout(history)}>logout</button>
       </HeaderContainerListPage>
       <MainDetails>
-        <CreateTripPage />
+        <CreateTripPage reload={reload} setReload={setReload} />
         <TripsToChoose>
           <h3>PRÓXIMAS VIAGENS</h3>
           <GridCardTrips>{getTrips}</GridCardTrips>
@@ -115,7 +114,7 @@ const GridCardTrips = styled.div`
 `;
 const MainDetails = styled.div`
   display: grid;
-
+  background-color: rgba(30, 31, 33, 0.6);
   height: 75vh;
   justify-items:center ;
   align-items:center ;
@@ -195,7 +194,7 @@ const TripContainer = styled.div`
   border-radius: 20px;
   padding: 1%;
   margin: 1%;
-  background-color: rgba(30, 31, 33, 0.3);
+  background-color: rgba(30, 31, 33, 0.8);
   box-shadow: inset 0 0 1em silver;
   font-weight: 900;
 `;

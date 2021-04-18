@@ -192,6 +192,7 @@ const MainAdminPage = styled.div`
   height:75vh;
   gap: 1%;
   flex-wrap: wrap;
+  background-color: rgba(30, 31, 33, 0.6);
   @media (max-width: 800px) {
     grid-template-columns: 1fr;
     height: 100%;
@@ -255,14 +256,14 @@ const CardDetail = styled.div`
   height: clamp(220px, 30%, 500px);
   padding: 2%;
   border-radius: 20px;
-  background-color: rgba(30, 31, 33, 0.4);
+  background-color: rgba(30, 31, 33, 0.8);
   box-shadow: inset 0 0 1em silver;
 `;
-const CardCandidates = styled.li`
+const CardCandidates = styled.p`
   width: clamp(300px, 80%, 500px);
   padding: 2%;
   border-radius: 20px;
-  background-color: rgba(30, 31, 33, 0.4);
+  background-color: rgba(30, 31, 33, 0.8);
   box-shadow: inset 0 0 1em silver;
   
    

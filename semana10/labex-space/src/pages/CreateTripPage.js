@@ -5,7 +5,6 @@ import swal from "sweetalert";
 import styled from "styled-components";
 import { urlAllTrips } from "../Components/url-api";
 
-
 const initialForm = {
   name: "",
   planet: "",
@@ -14,10 +13,9 @@ const initialForm = {
   durationInDays: "",
 };
 
-const CreateTripPage = () => {
+const CreateTripPage = (props) => {
   const [form, onChange] = useForm(initialForm);
   const [ show, setShow] = useState(false);
- 
 
   const ShowHide = () =>{
     if (show){
@@ -26,8 +24,6 @@ const CreateTripPage = () => {
       setShow(true)
     } 
   }
-
-
 
   const createTrip = (event) => {
     const token = window.localStorage.getItem("token");
@@ -53,7 +49,9 @@ const CreateTripPage = () => {
           "success"
         ).then(() => {
           ShowHide();
-          window.location.reload();
+          { props.reload ? props.setReload(false) : props.setReload(true) 
+          }
+       
         });
       })
       .catch((error) => {

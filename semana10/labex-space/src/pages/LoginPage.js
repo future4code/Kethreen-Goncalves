@@ -81,9 +81,6 @@ export default LoginPage;
 // CSS STYLED COMPONENTS =>
 
 const LoginPageApp = styled.div`
-@media (max-width: 800px) {
-    background-image: url(${bcgroundmobile});
-  }
 `;
 const HeaderContainerListPage = styled.div`
   display: grid;
@@ -123,6 +120,7 @@ const Login = styled.form`
   width: clamp(300px, 20%, 600px);
   height: clamp(300px, 60%, 800px);
   padding: 3%;
+  margin-top:5%;
   background-color: rgba(250, 252, 255, 0.1);
   box-shadow: inset 0 0 1em silver;
   border-radius: 50px;

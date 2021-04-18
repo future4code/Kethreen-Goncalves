@@ -22,7 +22,7 @@ const initialForm = {
 };
 const ApplicationFormPage = () => {
   const history = useHistory();
-  const listTrips = useRequestData(urlAllTrips, []);
+  const listTrips = useRequestData(urlAllTrips,history, []);
   const [form, onChange] = useForm(initialForm);
 
   const applicationToTrip = (event) => {
@@ -56,7 +56,7 @@ const ApplicationFormPage = () => {
     });
   const getCountry = countryToWord.map((country) => {
     return (
-      <option key={country.codigo} value={country.nome}>
+      <option key={country.nome} value={country.nome}>
         {country.nome} - {country.sigla3}
       </option>
     );

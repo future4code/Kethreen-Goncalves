@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import { goToListTripsPage, goToLoginPage } from "../Routes/coordinator";
 import Header from "../Components/Header";
@@ -10,6 +10,14 @@ import bcgroundGif from "../img/espaco.gif"
 
 const HomePages = () => {
   const history = useHistory();
+  const token = window.localStorage.getItem("token");
+
+  const logUser = (
+    token ? <p>Usuário Logado!</p> : <p>Administrativo</p>
+    
+  )
+    
+  
   
   return (
     <AppHome>
@@ -22,7 +30,7 @@ const HomePages = () => {
             title='Área Administrativa'
             src={Login}
           />
-          <p onClick={() => goToLoginPage(history)}>Administrativo</p>
+          <p onClick={() => goToLoginPage(history)}>{logUser}</p>
         </section>
         <SpaceContainer>
           <button onClick={() => goToListTripsPage(history)}>
@@ -78,8 +86,8 @@ const MainContainerHome = styled.main`
       }
     }
     p {
-      width: clamp(120px, 15%, 160px);
-      margin-top: 5px;
+      width: clamp(120px, 100%, 160px);
+      margin-top: 2px;
       font-size: clamp(0.5em, 0.6em + 1vw, 1.1em);
       color: #f9f9f9;
       cursor: pointer;
@@ -87,6 +95,10 @@ const MainContainerHome = styled.main`
         transform: scale(1.1);
         transition: all 0.6s ease;
       }
+      @media (max-width: 800px) {
+       margin-left:50%;
+        
+  }
     }
   }
 `;
