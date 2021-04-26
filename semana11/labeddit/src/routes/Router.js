@@ -1,5 +1,6 @@
 import React from "react"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
+import Header from "../components/Header/Header"
 import DetailsPostPage from "../pages/DetailsPostPage/DetailsPostPage"
 import ErrorPage from "../pages/ErrorPage/ErrorPage"
 import FeedPage from "../pages/FeedPage/FeedPage"
@@ -13,6 +14,7 @@ const Router = () => {
 
     return(
         <BrowserRouter>
+        <Header/>
             <Switch>
             <Route exact path ="/" >
                     <HomePage/>
