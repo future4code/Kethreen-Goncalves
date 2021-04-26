@@ -1,42 +1,28 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-}));
+import React from "react";
+import AppBar from "@material-ui/core/AppBar";
+import Button from "@material-ui/core/Button";
+import { StyledToobar } from "./styled";
+import { goToFeedPage, goToLogin } from "../../routes/coordinator";
+import { useHistory } from "react-router";
 
 const Header = () => {
-  const classes = useStyles();
+  const history = useHistory();
 
   return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+    <AppBar position='static'>
+      <StyledToobar>
+        {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" className={classes.title}>
-            News
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-    </div>
+          </IconButton> */}
+        <Button onClick={() => goToFeedPage(history)} color='inherit'>
+          LabEddit
+        </Button>
+        <Button onClick={() => goToLogin(history)} color='inherit'>
+          Login
+        </Button>
+      </StyledToobar>
+    </AppBar>
   );
-}
+};
 
-export default Header
+export default Header;

@@ -16,7 +16,7 @@ const Router = () => {
         <BrowserRouter>
         <Header/>
             <Switch>
-            <Route exact path ="/" >
+            <Route exact path ="/home" >
                     <HomePage/>
                 </Route>
                 <Route exact path ="/login" >
@@ -25,7 +25,7 @@ const Router = () => {
                 <Route exact path ="/cadastro" >
                     <SignUpPage/>
                 </Route>
-                <Route exact path ="/feed">
+                <Route exact path ="/">
                     <FeedPage/>
                 </Route>
                 <Route exact path ="/Detalhes/:id">

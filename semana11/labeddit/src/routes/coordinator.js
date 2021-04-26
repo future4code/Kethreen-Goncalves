@@ -7,7 +7,7 @@ export const goToSignUp = (history) => {
 };
 
 export const goToFeedPage = (history) => {
-    history.push("/feed");
+    history.push("/");
   };
 
 export const goToAddPost = (history) => {
@@ -19,5 +19,5 @@ export const goToDetailsPost = (history, id) => {
 };
 
 export const goToHome = (history) => {
-  history.push("/");
+  history.push("/home");
 };

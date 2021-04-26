@@ -1,7 +1,8 @@
 import React from "react"
+import useProtectedPage from "../../hooks/UserProtectedPage"
 
 const FeedPage = () => {
-
+useProtectedPage()
 
     return(
         <div>
