@@ -5,7 +5,7 @@ import PostCard from "../../components/postCard/PostCard";
 import { BASE_URL } from "../../constants/urls";
 import useRequestData from "../../hooks/useRequestData";
 import useProtectedPage from "../../hooks/UserProtectedPage";
-import { goToFeedPage } from "../../routes/coordinator";
+import { goToDetailsPost, goToFeedPage, goToLogin } from "../../routes/coordinator";
 import AddPostPage from "../PostPage/PostPage";
 import { ContainerPageFeed, PostsContainer } from "./styled";
 
@@ -44,6 +44,10 @@ const FeedPage = () => {
     return <>{letterUser.toUpperCase()}</>;
   };
 
+  const onClickCard = (id) => {
+      goToDetailsPost(history, id)
+  };
+
   const postsCard = posts.map((post) => {
     return (
       <PostCard
@@ -53,6 +57,7 @@ const FeedPage = () => {
         date={timeStampOnPost(post.createdAt)}
         username={post.username}
         firsletter={userFirstLetter(post.username)}
+        onClick={() => onClickCard(post.id)}
       />
     );
   });

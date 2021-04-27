@@ -1,20 +1,14 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { StyledCard, CardContainer } from './styled';
-import {AddCommentOutlinedIcon } from '@material-ui/icons';
+import { StyledCard } from './styled';
 import { StyledCardActions } from './styled';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
@@ -47,7 +41,7 @@ const PostCard = (props) => {
 
   return (
 
-    <StyledCard className={classes.root}>
+    <StyledCard className={classes.root}   onClick={props.onClick}> 
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
@@ -87,7 +81,7 @@ const PostCard = (props) => {
         </IconButton>
         <IconButton
               aria-label="show more"
-        >
+        onClick={props.onClick}> 
           <AddCommentIcon/>
         </IconButton>
         </div>
