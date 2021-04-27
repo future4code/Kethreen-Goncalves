@@ -63,5 +63,6 @@ export const SignUpButtonContainer = styled.div`
 
 export const LogoImage = styled.img`
   width:clamp(150px, 50vw, 300px);
+  margin-top:2vh;
 
 `

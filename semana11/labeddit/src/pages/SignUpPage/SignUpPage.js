@@ -13,6 +13,7 @@ import useForm from "../../hooks/useForm";
 import { useHistory } from "react-router";
 import useUnProtectedPage from "../../hooks/useUnProtectedPage";
 import { signUp } from "../../services/user";
+import Header from "../../components/Header/Header";
 
 const SignUpPage = () => {
     useUnProtectedPage()
@@ -25,6 +26,8 @@ const SignUpPage = () => {
   };
 
   return (
+    <>
+    <Header/>
     <ScreenContainer>
       <SectionLogoText>
         <LogoImage src={logo} alt="logo labEddit"/>
@@ -82,6 +85,7 @@ const SignUpPage = () => {
         </InputsContainer>
       </SectionFormLogin>
     </ScreenContainer>
+    </>
   );
 };
 

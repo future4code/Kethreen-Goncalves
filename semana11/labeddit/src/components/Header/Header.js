@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import { StyledToobar } from "./styled";
@@ -7,6 +7,14 @@ import { useHistory } from "react-router";
 
 const Header = () => {
   const history = useHistory();
+  const token = localStorage.getItem("token")
+  const [stateTextButtonLog, setStateTextButtonLog ] = useState(token ? "Logout" : "Login")
+
+  const logout = () => {
+    localStorage.removeItem("token")
+    goToLogin(history)
+    setStateTextButtonLog("Login")
+  }
 
   return (
     <AppBar position='static'>
@@ -17,8 +25,8 @@ const Header = () => {
         <Button onClick={() => goToFeedPage(history)} color='inherit'>
           LabEddit
         </Button>
-        <Button onClick={() => goToLogin(history)} color='inherit'>
-          Login
+        <Button onClick={() => logout()} color='inherit'>
+         {stateTextButtonLog}
         </Button>
       </StyledToobar>
     </AppBar>

@@ -1,7 +1,7 @@
 import React from "react"
 import useProtectedPage from "../../hooks/UserProtectedPage"
 
-const PostPage = () => {
+const AddPostPage = () => {
 useProtectedPage()
 
     return(
@@ -11,4 +11,4 @@ useProtectedPage()
     )
 }
 
-export default PostPage
+export default AddPostPage

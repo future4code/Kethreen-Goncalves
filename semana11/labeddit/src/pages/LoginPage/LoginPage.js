@@ -14,6 +14,7 @@ import { goToSignUp } from "../../routes/coordinator";
 import { useHistory } from "react-router";
 import { login } from "../../services/user";
 import useUnProtectedPage from "../../hooks/useUnProtectedPage";
+import Header from "../../components/Header/Header";
 
 const LoginPage = () => {
   useUnProtectedPage()
@@ -27,6 +28,8 @@ const LoginPage = () => {
  
 
   return (
+    <>
+    <Header/>
     <ScreenContainer>
       <SectionLogoText>
         <LogoImage src={logo} />
@@ -83,6 +86,7 @@ const LoginPage = () => {
         </SignUpButtonContainer>
       </SectionFormLogin>
     </ScreenContainer>
+    </>
   );
 };
 
