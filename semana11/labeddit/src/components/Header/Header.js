@@ -12,6 +12,7 @@ const Header = () => {
 
   const logout = () => {
     localStorage.removeItem("token")
+    localStorage.removeItem("userName")
     goToLogin(history)
     setStateTextButtonLog("Login")
   }
