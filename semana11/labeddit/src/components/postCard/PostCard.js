@@ -14,6 +14,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { StyledCard } from './styled';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,7 +44,7 @@ const PostCard = (props) => {
   };
 
   return (
-    <Card className={classes.root}>
+    <StyledCard className={classes.root}>
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
@@ -55,12 +56,16 @@ const PostCard = (props) => {
             <MoreVertIcon />
           </IconButton>
         }
-        title={props.title}
-        subheader="Janeiro 1, 2021"
+        title={props.username}
+        subheader={props.date}
       />
       
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">{props.text}
+      <Typography  variant="body1" color="textPrimary" component="p">
+            {props.title}
+        </Typography>
+        <Typography variant="body2" color="textSecondary" component="p">
+            {props.text}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -108,7 +113,7 @@ const PostCard = (props) => {
           </Typography> */}
         </CardContent>
       </Collapse>
-    </Card>
+    </StyledCard>
   )
 }
 

@@ -13,7 +13,7 @@ const useRequestData = (initialData, url) => {
             }
         })
         .then((res) => {
-            setData(res.data)
+            setData(res.data.posts)
         })
         .catch((err) => {
             console.log(err)
