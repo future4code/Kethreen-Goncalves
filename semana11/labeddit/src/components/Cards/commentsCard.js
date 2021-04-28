@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import CardHeader from "@material-ui/core/CardHeader";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
-import { blueGrey} from "@material-ui/core/colors";
+import { blueGrey } from "@material-ui/core/colors";
 import { StyledCardComments, TextCardComments } from "../Cards/styled";
 import IconButton from "@material-ui/core/IconButton";
 import ThumbDownIcon from "@material-ui/icons/ThumbDown";
@@ -30,9 +30,9 @@ const CommentCard = (props) => {
   const commentsPost = props.comments;
 
   useEffect(() => {
-     console.log("rep post")
-  },[commentsPost])
-  
+    console.log("rep post");
+  }, [commentsPost]);
+
   console.log("chegou a props", commentsPost);
 
   const timeStampOnPost = (time) => {

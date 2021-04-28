@@ -20,12 +20,11 @@ const LoginPage = () => {
   useUnProtectedPage();
   const history = useHistory();
   const [form, onChange, clear] = useForm({ email: "", password: "" });
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const onSubmitForm = (event) => {
     event.preventDefault();
-    login(form, clear, history,setIsLoading);
+    login(form, clear, history, setIsLoading);
   };
-  
 
   return (
     <>
@@ -69,7 +68,11 @@ const LoginPage = () => {
                 variant={"contained"}
                 color={"secondary"}
               >
-                {isLoading ? <CircularProgress color={"inherit"} size={24}/> : <>Fazer Login !</>}
+                {isLoading ? (
+                  <CircularProgress color={"inherit"} size={24} />
+                ) : (
+                  <>Fazer Login !</>
+                )}
               </Button>
             </form>
           </InputsContainer>

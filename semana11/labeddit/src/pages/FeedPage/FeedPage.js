@@ -16,11 +16,10 @@ const FeedPage = () => {
   const history = useHistory();
 
   useEffect(() => {
-    goToFeedPage(history)
-    console.log("repetiu")
-  },[posts])
-  
-    
+    goToFeedPage(history);
+    console.log("repetiu");
+  }, [posts, history]);
+
   const timeStampOnPost = (time) => {
     var date = new Date(time);
     return (
@@ -45,7 +44,7 @@ const FeedPage = () => {
   };
 
   const onClickCard = (id) => {
-      goToDetailsPost(history, id)
+    goToDetailsPost(history, id);
   };
 
   const postsCard = posts.map((post) => {
@@ -65,7 +64,7 @@ const FeedPage = () => {
   return (
     <ContainerPageFeed>
       <Header />
-      <AddPostPage/>
+      <AddPostPage />
       <PostsContainer>{postsCard}</PostsContainer>
     </ContainerPageFeed>
   );

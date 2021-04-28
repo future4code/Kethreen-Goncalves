@@ -1,17 +1,16 @@
-import React, { useEffect } from "react" 
-import { useParams } from "react-router"
-import Header from "../../components/Header/Header"
-import DetailsCard from "../../components/Cards/DetailsCard"
-import { BASE_URL } from "../../constants/urls"
-import { useRequestDataId } from "../../hooks/useRequestData"
-import useProtectedPage from "../../hooks/UserProtectedPage"
-import { PostDetailsContainer } from "./styled"
+import React from "react";
+import { useParams } from "react-router";
+import Header from "../../components/Header/Header";
+import DetailsCard from "../../components/Cards/DetailsCard";
+import { BASE_URL } from "../../constants/urls";
+import { useRequestDataId } from "../../hooks/useRequestData";
+import useProtectedPage from "../../hooks/UserProtectedPage";
+import { PostDetailsContainer } from "./styled";
 
 const DetailsPostPage = () => {
-  useProtectedPage()
-  const params = useParams()
-  const postsDetails = useRequestDataId([], `${BASE_URL}/posts/${params.id}`)
-    
+  useProtectedPage();
+  const params = useParams();
+  const postsDetails = useRequestDataId([], `${BASE_URL}/posts/${params.id}`);
 
   const timeStampOnPost = (time) => {
     var date = new Date(time);
@@ -36,29 +35,29 @@ const DetailsPostPage = () => {
     return <>{letterUser.toUpperCase()}</>;
   };
 
-console.log(postsDetails)
+  console.log(postsDetails);
 
   return (
-    <div >
-      <Header/>
+    <div>
+      <Header />
       <PostDetailsContainer>
-      {postsDetails.id ? 
-      <DetailsCard
-      title={postsDetails.title}
-      text={postsDetails.text}
-      date={timeStampOnPost(postsDetails.createdAt)}
-      username={postsDetails.username}
-      firsletter={userFirstLetter(postsDetails.username)}
-      comments={postsDetails.comments}
-      votes={postsDetails.votesCount}
-      votesDirection={postsDetails.userVoteDirection}
-     
-      />: <></>
-      }
+        {postsDetails.id ? (
+          <DetailsCard
+            title={postsDetails.title}
+            text={postsDetails.text}
+            date={timeStampOnPost(postsDetails.createdAt)}
+            username={postsDetails.username}
+            firsletter={userFirstLetter(postsDetails.username)}
+            comments={postsDetails.comments}
+            votes={postsDetails.votesCount}
+            votesDirection={postsDetails.userVoteDirection}
+          />
+        ) : (
+          <></>
+        )}
       </PostDetailsContainer>
-      
     </div>
-  )
-}
+  );
+};
 
-export default DetailsPostPage
+export default DetailsPostPage;

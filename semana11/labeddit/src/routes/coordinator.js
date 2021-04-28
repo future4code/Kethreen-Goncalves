@@ -7,8 +7,8 @@ export const goToSignUp = (history) => {
 };
 
 export const goToFeedPage = (history) => {
-    history.push("/");
-  };
+  history.push("/");
+};
 
 export const goToAddPost = (history) => {
   history.push("/adicionar-postagem");
