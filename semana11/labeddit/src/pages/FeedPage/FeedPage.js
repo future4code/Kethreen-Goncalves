@@ -62,6 +62,7 @@ const FeedPage = () => {
         username={post.username}
         firsletter={userFirstLetter(post.username)}
         votesCount={post.votesCount}
+        commentsCount={post.commentsCount}
         onClick={() => onClickCard(post.id)}
       />
     );

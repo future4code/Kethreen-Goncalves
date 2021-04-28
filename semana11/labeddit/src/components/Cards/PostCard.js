@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
@@ -9,7 +9,7 @@ import { red } from "@material-ui/core/colors";
 import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { StyledCard } from "./styled";
-import { StyledCardActions } from "./styled";
+import { StyledCardActions, CounterCommentsStyle } from "./styled";
 import AddCommentIcon from "@material-ui/icons/AddComment";
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
@@ -76,7 +76,9 @@ const PostCard = (props) => {
           </IconButton>
           <IconButton aria-label='show more' onClick={props.onClick}>
             <AddCommentIcon />
+            
           </IconButton>
+          <CounterCommentsStyle>{props.commentsCount} comments</CounterCommentsStyle>
         </div>
       </StyledCardActions>
     </StyledCard>

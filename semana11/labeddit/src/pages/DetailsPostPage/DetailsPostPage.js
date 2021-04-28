@@ -50,6 +50,7 @@ const DetailsPostPage = () => {
             username={postsDetails.username}
             firsletter={userFirstLetter(postsDetails.username)}
             comments={postsDetails.comments}
+            commentsCount={postsDetails.commentsCount}
             votesCount={postsDetails.votesCount}
 
           />

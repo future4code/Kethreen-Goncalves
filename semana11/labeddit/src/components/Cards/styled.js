@@ -20,3 +20,16 @@ export const StyledCardComments = styled(Card)`
 export const TextCardComments = styled.div`
   padding-left: 10%;
 `;
+
+export const CounterCommentsStyle = styled.p`
+  font-size:12px;
+  display:inline;
+  width:80%;
+  height:50%;
+`;
+export const IconVotesCounter = styled.div`
+  display:flex;
+  flex-direction:column;
+  text-align:center;
+  height:8vh;
+`;

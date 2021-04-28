@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import { StyledCard, StyledCardActions } from "./styled";
+import { CounterCommentsStyle, StyledCard, StyledCardActions } from "./styled";
 import IconButton from "@material-ui/core/IconButton";
 import AddCommentIcon from "@material-ui/icons/AddComment";
 import CommentCard from "./commentsCard";
@@ -93,6 +93,7 @@ const DetailsCard = (props) => {
           >
             <AddCommentIcon />
           </IconButton>
+          <CounterCommentsStyle>{props.commentsCount} comments</CounterCommentsStyle>
         </div>
       </StyledCardActions>
       <Collapse in={expanded} timeout='auto' unmountOnExit>

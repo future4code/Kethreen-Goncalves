@@ -4,7 +4,7 @@ import CardHeader from "@material-ui/core/CardHeader";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import { blueGrey } from "@material-ui/core/colors";
-import { StyledCardComments, TextCardComments } from "../Cards/styled";
+import { StyledCardComments, TextCardComments, IconVotesCounter } from "../Cards/styled";
 import IconButton from "@material-ui/core/IconButton";
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
@@ -68,15 +68,15 @@ const CommentCard = (props) => {
             </Avatar>
           }
           action={
-            <>
+            <IconVotesCounter>
               <IconButton aria-label='to like'>
-                <ArrowDownwardIcon />
+                <ArrowUpwardIcon />
               </IconButton>
               {comment.votesCount}
               <IconButton aria-label='to nolike'>
-                <ArrowUpwardIcon />
+              <ArrowDownwardIcon />
               </IconButton>
-            </>
+            </IconVotesCounter>
           }
           title={comment.username.toUpperCase()}
           subheader={timeStampOnPost(comment.createdAt)}
