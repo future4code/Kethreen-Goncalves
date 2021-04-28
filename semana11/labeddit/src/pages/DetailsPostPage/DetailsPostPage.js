@@ -1,4 +1,4 @@
-import React from "react" 
+import React, { useEffect } from "react" 
 import { useParams } from "react-router"
 import Header from "../../components/Header/Header"
 import DetailsCard from "../../components/Cards/DetailsCard"
@@ -12,6 +12,7 @@ const DetailsPostPage = () => {
   const params = useParams()
   const postsDetails = useRequestDataId([], `${BASE_URL}/posts/${params.id}`)
     
+
   const timeStampOnPost = (time) => {
     var date = new Date(time);
     return (

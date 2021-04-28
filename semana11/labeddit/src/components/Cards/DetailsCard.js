@@ -100,7 +100,9 @@ const DetailsCard = (props) => {
         </div>
       </StyledCardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CreateNewComment/>
+        <CreateNewComment
+      
+        />
         <CommentCard
         comments ={comments}
         />

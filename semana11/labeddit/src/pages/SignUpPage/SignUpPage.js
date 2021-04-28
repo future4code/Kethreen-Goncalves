@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   InputsContainer,
   LogoImage,
@@ -7,7 +7,7 @@ import {
   SectionFormLogin
 } from "./styled";
 import logo from "../../assets/img/logo-labeddit.png";
-import { Button, TextField } from "@material-ui/core";
+import { Button, CircularProgress, TextField } from "@material-ui/core";
 import useForm from "../../hooks/useForm";
 
 import { useHistory } from "react-router";
@@ -19,10 +19,11 @@ const SignUpPage = () => {
     useUnProtectedPage()
     const history = useHistory()
     const [form, onChange, clear] = useForm({ email:"", password:"", username:"" });
+    const [isLoading, setIsLoading] = useState(false)
 
   const onSubmitForm = (event) => {
     event.preventDefault();
-    signUp(form,clear,history)
+    signUp(form,clear,history,setIsLoading)
   };
 
   return (
@@ -79,7 +80,7 @@ const SignUpPage = () => {
               variant={"contained"}
               color={"secondary"}
             >
-              Fazer Cadastro!
+              {isLoading ? <CircularProgress color={"inherit"} size={24}/> : <>Fazer Cadastro !</>}
             </Button>
           </form>
         </InputsContainer>

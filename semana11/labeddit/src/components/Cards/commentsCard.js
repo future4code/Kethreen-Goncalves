@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CardHeader from "@material-ui/core/CardHeader";
 import Avatar from "@material-ui/core/Avatar";
@@ -29,19 +29,17 @@ const CommentCard = (props) => {
   const classes = useStyles();
   const commentsPost = props.comments;
 
+  useEffect(() => {
+     console.log("rep post")
+  },[commentsPost])
+  
   console.log("chegou a props", commentsPost);
-
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   const timeStampOnPost = (time) => {
     var date = new Date(time);
     return (
       <>
-        {"" +
+        {"in: " +
           date.getDate() +
           "/" +
           (date.getMonth() + 1) +
