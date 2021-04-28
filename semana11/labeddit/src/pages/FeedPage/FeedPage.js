@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router";
 import Header from "../../components/Header/Header";
-import PostCard from "../../components/postCard/PostCard";
+import PostCard from "../../components/Cards/PostCard";
 import { BASE_URL } from "../../constants/urls";
-import useRequestData from "../../hooks/useRequestData";
+import { useRequestData } from "../../hooks/useRequestData";
 import useProtectedPage from "../../hooks/UserProtectedPage";
-import { goToDetailsPost, goToFeedPage, goToLogin } from "../../routes/coordinator";
+import { goToDetailsPost, goToFeedPage } from "../../routes/coordinator";
 import AddPostPage from "../PostPage/PostPage";
 import { ContainerPageFeed, PostsContainer } from "./styled";
 
