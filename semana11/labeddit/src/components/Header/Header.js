@@ -24,7 +24,7 @@ const Header = () => {
             <MenuIcon />
           </IconButton> */}
         <Button onClick={() => goToFeedPage(history)} color='inherit'>
-          LabEddit
+          {token ? "LabEddit" : ""}
         </Button>
         <Button onClick={() => logout()} color='inherit'>
          {stateTextButtonLog}

@@ -6,6 +6,7 @@ import { BASE_URL } from "../../constants/urls";
 import { useRequestDataId } from "../../hooks/useRequestData";
 import useProtectedPage from "../../hooks/UserProtectedPage";
 import { PostDetailsContainer } from "./styled";
+import Loading from "../../components/Loading/loading";
 
 const DetailsPostPage = () => {
   useProtectedPage();
@@ -35,13 +36,13 @@ const DetailsPostPage = () => {
     return <>{letterUser.toUpperCase()}</>;
   };
 
-  console.log(postsDetails);
+  console.log("detalhesss",postsDetails);
 
   return (
     <div>
       <Header />
       <PostDetailsContainer>
-        {postsDetails.id ? (
+        {postsDetails.username ? 
           <DetailsCard
             title={postsDetails.title}
             text={postsDetails.text}
@@ -49,12 +50,12 @@ const DetailsPostPage = () => {
             username={postsDetails.username}
             firsletter={userFirstLetter(postsDetails.username)}
             comments={postsDetails.comments}
-            votes={postsDetails.votesCount}
-            votesDirection={postsDetails.userVoteDirection}
+            votesCount={postsDetails.votesCount}
+
           />
-        ) : (
-          <></>
-        )}
+        : 
+          <Loading/>
+        }
       </PostDetailsContainer>
     </div>
   );

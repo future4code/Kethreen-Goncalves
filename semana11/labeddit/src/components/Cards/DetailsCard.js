@@ -11,11 +11,11 @@ import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { StyledCard, StyledCardActions } from "./styled";
 import IconButton from "@material-ui/core/IconButton";
-import ThumbDownIcon from "@material-ui/icons/ThumbDown";
-import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import AddCommentIcon from "@material-ui/icons/AddComment";
 import CommentCard from "./commentsCard";
 import CreateNewComment from "./CreateNewComments";
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 
 const useStyles = makeStyles((theme) => ({
   expand: {
@@ -70,10 +70,11 @@ const DetailsCard = (props) => {
       <StyledCardActions disableSpacing>
         <div>
           <IconButton aria-label='to like'>
-            <ThumbUpIcon />
+            <ArrowUpwardIcon />
           </IconButton>
+          {props.votesCount}
           <IconButton aria-label='to nolike'>
-            <ThumbDownIcon />
+            <ArrowDownwardIcon />
           </IconButton>
         </div>
         <div>

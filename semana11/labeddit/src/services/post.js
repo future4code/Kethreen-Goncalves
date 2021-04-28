@@ -33,17 +33,3 @@ export const createCommentRequest = (body, clear, id) => {
     .catch((err) => console.log(err));
 };
 
-// export const voteCommentRequest = (body, postId, commentId) => {
-//   axios
-//     .put(`${BASE_URL}/posts/${postId}/comment/${commentId}/vote`, body, headers)
-//     .then((response) => {
-//       alert(
-//         "THEN Alert aqui só pra mostrar que o request está funcionando, porque não está atualizando automáticamente ainda"
-//       );
-//     })
-//     .catch((error) => {
-//       alert(
-//         "ERROR Alert aqui só pra mostrar que o request está funcionando, porque não está atualizando automáticamente ainda"
-//       );
-//     });
-// };

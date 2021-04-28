@@ -6,8 +6,8 @@ import Typography from "@material-ui/core/Typography";
 import { blueGrey } from "@material-ui/core/colors";
 import { StyledCardComments, TextCardComments } from "../Cards/styled";
 import IconButton from "@material-ui/core/IconButton";
-import ThumbDownIcon from "@material-ui/icons/ThumbDown";
-import ThumbUpIcon from "@material-ui/icons/ThumbUp";
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 
 const useStyles = makeStyles((theme) => ({
   expand: {
@@ -70,10 +70,11 @@ const CommentCard = (props) => {
           action={
             <>
               <IconButton aria-label='to like'>
-                <ThumbUpIcon />
+                <ArrowDownwardIcon />
               </IconButton>
+              {comment.votesCount}
               <IconButton aria-label='to nolike'>
-                <ThumbDownIcon />
+                <ArrowUpwardIcon />
               </IconButton>
             </>
           }

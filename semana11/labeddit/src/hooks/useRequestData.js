@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 export const useRequestData = (initialData, url) => {
   const [data, setData] = useState(initialData);
-
   useEffect(() => {
     axios
       .get(url, {

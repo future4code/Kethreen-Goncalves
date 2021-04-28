@@ -8,6 +8,8 @@ import useProtectedPage from "../../hooks/UserProtectedPage";
 import { goToDetailsPost, goToFeedPage } from "../../routes/coordinator";
 import AddPostPage from "../PostPage/PostPage";
 import { ContainerPageFeed, PostsContainer } from "./styled";
+import Loading from "../../components/Loading/loading";
+
 
 const FeedPage = () => {
   useProtectedPage();
@@ -20,6 +22,8 @@ const FeedPage = () => {
     console.log("repetiu");
   }, [posts, history]);
 
+
+  
   const timeStampOnPost = (time) => {
     var date = new Date(time);
     return (
@@ -38,6 +42,7 @@ const FeedPage = () => {
     );
   };
 
+  
   const userFirstLetter = (letter) => {
     const letterUser = letter.substr(0, 1);
     return <>{letterUser.toUpperCase()}</>;
@@ -56,6 +61,7 @@ const FeedPage = () => {
         date={timeStampOnPost(post.createdAt)}
         username={post.username}
         firsletter={userFirstLetter(post.username)}
+        votesCount={post.votesCount}
         onClick={() => onClickCard(post.id)}
       />
     );
@@ -65,7 +71,8 @@ const FeedPage = () => {
     <ContainerPageFeed>
       <Header />
       <AddPostPage />
-      <PostsContainer>{postsCard}</PostsContainer>
+      {postsCard.length > 0 ? 
+      <PostsContainer>{postsCard}</PostsContainer> : <Loading/>}
     </ContainerPageFeed>
   );
 };

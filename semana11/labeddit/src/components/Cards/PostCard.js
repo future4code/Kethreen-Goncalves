@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
@@ -10,9 +10,9 @@ import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { StyledCard } from "./styled";
 import { StyledCardActions } from "./styled";
-import ThumbDownIcon from "@material-ui/icons/ThumbDown";
-import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import AddCommentIcon from "@material-ui/icons/AddComment";
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 
 const useStyles = makeStyles((theme) => ({
   expand: {
@@ -34,8 +34,8 @@ const PostCard = (props) => {
   const classes = useStyles();
 
   return (
-    <StyledCard className={classes.root} onClick={props.onClick}>
-      <CardHeader
+    <StyledCard className={classes.root}>
+      <CardHeader  onClick={props.onClick}
         avatar={
           <Avatar aria-label='recipe' className={classes.avatar}>
             {props.firsletter}
@@ -50,7 +50,7 @@ const PostCard = (props) => {
         subheader={props.date}
       />
 
-      <CardContent>
+      <CardContent  onClick={props.onClick}>
         <Typography variant='body1' color='textPrimary' component='p'>
           {props.title}
         </Typography>
@@ -61,12 +61,15 @@ const PostCard = (props) => {
       <StyledCardActions disableSpacing>
         <div>
           <IconButton aria-label='to like'>
-            <ThumbUpIcon />
+          <ArrowDownwardIcon />
           </IconButton>
+             {props.votesCount}
           <IconButton aria-label='to nolike'>
-            <ThumbDownIcon />
+          <ArrowUpwardIcon  />
+         
           </IconButton>
         </div>
+      
         <div>
           <IconButton aria-label='share'>
             <ShareIcon />
