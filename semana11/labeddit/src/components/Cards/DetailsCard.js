@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -14,8 +14,8 @@ import IconButton from "@material-ui/core/IconButton";
 import AddCommentIcon from "@material-ui/icons/AddComment";
 import CommentCard from "./commentsCard";
 import CreateNewComment from "./CreateNewComments";
-import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
 
 const useStyles = makeStyles((theme) => ({
   expand: {
@@ -35,8 +35,11 @@ const useStyles = makeStyles((theme) => ({
 
 const DetailsCard = (props) => {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(true);
   const comments = props.comments;
+
+  // const postId = props.postId
+  //   console.log("post ID no detalhes chega",postId)
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -69,11 +72,11 @@ const DetailsCard = (props) => {
       </CardContent>
       <StyledCardActions disableSpacing>
         <div>
-          <IconButton aria-label='to like'>
+          <IconButton onClick={props.onClickUpvote} aria-label='to like'>
             <ArrowUpwardIcon />
           </IconButton>
           {props.votesCount}
-          <IconButton aria-label='to nolike'>
+          <IconButton onClick={props.onClickDownvote} aria-label='to nolike'>
             <ArrowDownwardIcon />
           </IconButton>
         </div>
@@ -82,7 +85,7 @@ const DetailsCard = (props) => {
             <ShareIcon />
           </IconButton>
 
-          {/* COMENTARIOS NO   + */}
+          {/* COMENTARIOS NO BOTÃO DE + EXPANDED */}
           <IconButton
             className={clsx(classes.expand, {
               [classes.expandOpen]: expanded,
@@ -93,13 +96,21 @@ const DetailsCard = (props) => {
           >
             <AddCommentIcon />
           </IconButton>
-          <CounterCommentsStyle>{props.commentsCount} comments</CounterCommentsStyle>
+          <CounterCommentsStyle>
+            {props.commentsCount} comments
+          </CounterCommentsStyle>
+          
         </div>
       </StyledCardActions>
-      <Collapse in={expanded} timeout='auto' unmountOnExit>
-        <CreateNewComment />
-        <CommentCard comments={comments} />
-      </Collapse>
+      {expanded ? (
+        <Collapse in={expanded} timeout='auto' unmountOnExit>
+          <CreateNewComment />
+
+          <CommentCard comments={comments} postId={props.postId} />
+        </Collapse>
+      ) : (
+        <></>
+      )}
     </StyledCard>
   );
 };

@@ -1,23 +1,21 @@
 export const goToLogin = (history) => {
-  history.push("/login");
-};
-
-export const goToSignUp = (history) => {
-  history.push("/cadastro");
-};
-
-export const goToFeedPage = (history) => {
   history.push("/");
 };
 
+export const goToSignUp = (history) => {
+  history.push("/posts");
+};
+
+export const goToFeedPage = (history) => {
+  history.push("/feed");
+};
+
 export const goToAddPost = (history) => {
-  history.push("/adicionar-postagem");
+  history.push("/add-post");
 };
 
 export const goToDetailsPost = (history, id) => {
-  history.push(`/Detalhes/${id}`);
+  history.push(`/posts/${id}`);
 };
 
-export const goToHome = (history) => {
-  history.push("/home");
-};
+

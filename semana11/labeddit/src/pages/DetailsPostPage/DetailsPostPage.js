@@ -7,6 +7,7 @@ import { useRequestDataId } from "../../hooks/useRequestData";
 import useProtectedPage from "../../hooks/UserProtectedPage";
 import { PostDetailsContainer } from "./styled";
 import Loading from "../../components/Loading/loading";
+import { voteRequest } from "../../services/vote";
 
 const DetailsPostPage = () => {
   useProtectedPage();
@@ -30,7 +31,33 @@ const DetailsPostPage = () => {
       </>
     );
   };
+  const upvotePost = (post) => {
+    if (post.userVoteDirection > 0) {
+      unvotePost(post);
+    } else {
+      const body = {
+        direction: 1,
+      };
+     voteRequest(body, post.id);
+    }
+  };
 
+  const downvotePost = (post) => {
+    if (post.userVoteDirection < 0) {
+      unvotePost(post);
+    } else {
+      const body = {
+        direction: -1,
+      };
+      voteRequest(body, post.id);
+    }
+  };
+  const unvotePost = (post) => {
+    const body = {
+      direction: 0,
+    };
+    voteRequest(body, post.id);
+  };
   const userFirstLetter = (letter) => {
     const letterUser = letter.substr(0, 1);
     return <>{letterUser.toUpperCase()}</>;
@@ -44,6 +71,7 @@ const DetailsPostPage = () => {
       <PostDetailsContainer>
         {postsDetails.username ? 
           <DetailsCard
+            postId={postsDetails.id}
             title={postsDetails.title}
             text={postsDetails.text}
             date={timeStampOnPost(postsDetails.createdAt)}
@@ -52,6 +80,9 @@ const DetailsPostPage = () => {
             comments={postsDetails.comments}
             commentsCount={postsDetails.commentsCount}
             votesCount={postsDetails.votesCount}
+            userVoteDirection={postsDetails.userVoteDirection}
+            onClickUpvote={() => upvotePost(postsDetails)}
+            onClickDownvote={() => downvotePost(postsDetails)}
 
           />
         : 

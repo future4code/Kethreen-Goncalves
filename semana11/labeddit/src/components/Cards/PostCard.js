@@ -60,11 +60,11 @@ const PostCard = (props) => {
       </CardContent>
       <StyledCardActions disableSpacing>
         <div>
-          <IconButton aria-label='to like'>
+          <IconButton onClick={props.onClickDownvote } aria-label='to like'>
           <ArrowDownwardIcon />
           </IconButton>
              {props.votesCount}
-          <IconButton aria-label='to nolike'>
+          <IconButton onClick={props.onClickUpvote } aria-label='to nolike'>
           <ArrowUpwardIcon  />
          
           </IconButton>
@@ -77,8 +77,9 @@ const PostCard = (props) => {
           <IconButton aria-label='show more' onClick={props.onClick}>
             <AddCommentIcon />
             
-          </IconButton>
+         
           <CounterCommentsStyle>{props.commentsCount} comments</CounterCommentsStyle>
+           </IconButton>
         </div>
       </StyledCardActions>
     </StyledCard>

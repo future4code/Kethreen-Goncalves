@@ -8,6 +8,7 @@ import { StyledCardComments, TextCardComments, IconVotesCounter } from "../Cards
 import IconButton from "@material-ui/core/IconButton";
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import { voteCommentRequest } from "../../services/vote";
 
 const useStyles = makeStyles((theme) => ({
   expand: {
@@ -28,6 +29,10 @@ const useStyles = makeStyles((theme) => ({
 const CommentCard = (props) => {
   const classes = useStyles();
   const commentsPost = props.comments;
+  
+  const postId = props.postId
+  
+  console.log("chega no card commente o ID",postId)
 
   useEffect(() => {
     console.log("rep post");
@@ -52,13 +57,50 @@ const CommentCard = (props) => {
       </>
     );
   };
-
-  const userFirstLetter = (letter) => {
+ const userFirstLetter = (letter) => {
     const letterUser = letter.substr(0, 1);
     return <>{letterUser.toUpperCase()}</>;
   };
 
+
+// (body, postId, commentId)
+
+  const upvotePost = (post) => {
+    if (post.userVoteDirection > 0) {
+      unvotePost(post);
+    } else {
+      const body = {
+        direction: 1,
+      };
+     voteCommentRequest(body, postId,post);
+    }
+    console.log(post)
+  };
+
+
+  const downvotePost = (post) => {
+    if (post.userVoteDirection < 0) {
+      unvotePost(post);
+    } else {
+      const body = {
+        direction: -1,
+      };
+      voteCommentRequest(body, postId, post);
+    }
+    console.log(post)
+  };
+  const unvotePost = (post) => {
+    const body = {
+      direction: 0,
+    };
+    voteCommentRequest(body, postId, post);
+    console.log(post)
+  };
+
+
+ 
   const cardAllComentsToPost = commentsPost.map((comment) => {
+    
     return (
       <StyledCardComments key={comment.id} className={classes.root}>
         <CardHeader
@@ -69,11 +111,11 @@ const CommentCard = (props) => {
           }
           action={
             <IconVotesCounter>
-              <IconButton aria-label='to like'>
+              <IconButton   onClick={() => upvotePost(comment.id)}   aria-label='to like'>
                 <ArrowUpwardIcon />
               </IconButton>
               {comment.votesCount}
-              <IconButton aria-label='to nolike'>
+              <IconButton   onClick={() => downvotePost(comment.id) }   aria-label='to nolike'>
               <ArrowDownwardIcon />
               </IconButton>
             </IconVotesCounter>

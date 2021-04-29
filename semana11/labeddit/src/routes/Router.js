@@ -3,7 +3,6 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import DetailsPostPage from "../pages/DetailsPostPage/DetailsPostPage";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import FeedPage from "../pages/FeedPage/FeedPage";
-import HomePage from "../pages/HomePage/HomePage";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import AddPostPage from "../pages/PostPage/PostPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
@@ -12,22 +11,19 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path='/home'>
-          <HomePage />
-        </Route>
-        <Route exact path='/login'>
+        <Route exact path='/'>
           <LoginPage />
         </Route>
-        <Route exact path='/cadastro'>
+        <Route exact path='/posts'>
           <SignUpPage />
         </Route>
-        <Route exact path='/'>
+        <Route exact path='/feed'>
           <FeedPage />
         </Route>
-        <Route exact path='/Detalhes/:id'>
+        <Route exact path='/posts/:id'>
           <DetailsPostPage />
         </Route>
-        <Route exact path='/adicionar-postagem'>
+        <Route exact path='/add-post'>
           <AddPostPage />
         </Route>
         <Route>
