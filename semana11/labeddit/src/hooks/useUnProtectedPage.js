@@ -8,8 +8,6 @@ const useUnProtectedPage = () => {
     const token = localStorage.getItem("token");
     if (token) {
       goToFeedPage(history);
-    }else{
-      goToLogin(history)
     }
   }, [history]);
 };
