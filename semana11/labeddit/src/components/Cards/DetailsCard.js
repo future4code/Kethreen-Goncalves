@@ -38,9 +38,6 @@ const DetailsCard = (props) => {
   const [expanded, setExpanded] = useState(true);
   const comments = props.comments;
 
-  // const postId = props.postId
-  //   console.log("post ID no detalhes chega",postId)
-
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };

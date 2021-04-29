@@ -11,12 +11,12 @@ export const createPost = (body, clear, setIsLoading) => {
     })
     .then((res) => {
       setIsLoading(false);
-      console.log(res);
+
       clear();
     })
     .catch((err) => {
       setIsLoading(false);
-      console.log(err.response.message);
+
     });
 };
 
@@ -30,6 +30,8 @@ export const createCommentRequest = (body, clear, id) => {
     .then((res) => {
       clear();
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      alert("erro")
+    })
 };
 

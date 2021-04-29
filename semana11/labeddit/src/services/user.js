@@ -9,7 +9,7 @@ export const login = (body, clear, history, setIsLoading) => {
     .then((res) => {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userName", res.data.user.username);
-      console.log(res);
+  
       clear();
       setIsLoading(false);
       goToFeedPage(history);
@@ -27,7 +27,7 @@ export const signUp = (body, clear, history, setIsLoading) => {
     .then((res) => {
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userName", res.data.user.username);
-      console.log(res);
+
       clear();
       setIsLoading(false);
       goToFeedPage(history);

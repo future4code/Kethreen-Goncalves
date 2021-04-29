@@ -32,13 +32,11 @@ const CommentCard = (props) => {
   
   const postId = props.postId
   
-  console.log("chega no card commente o ID",postId)
 
   useEffect(() => {
-    console.log("rep post");
+
   }, [commentsPost]);
 
-  console.log("chegou a props", commentsPost);
 
   const timeStampOnPost = (time) => {
     var date = new Date(time);
@@ -74,7 +72,7 @@ const CommentCard = (props) => {
       };
      voteCommentRequest(body, postId,post);
     }
-    console.log(post)
+
   };
 
 
@@ -87,14 +85,14 @@ const CommentCard = (props) => {
       };
       voteCommentRequest(body, postId, post);
     }
-    console.log(post)
+
   };
   const unvotePost = (post) => {
     const body = {
       direction: 0,
     };
     voteCommentRequest(body, postId, post);
-    console.log(post)
+
   };
 
 

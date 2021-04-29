@@ -22,12 +22,10 @@ const FeedPage = () => {
   const [search, setSearch] = useInput("");
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(400);
-  console.log(posts);
   const history = useHistory();
 
   useEffect(() => {
     goToFeedPage(history);
-    console.log("repetiu");
   }, [posts, history, posts.votesCount]);
 
   const timeStampOnPost = (time) => {

@@ -14,7 +14,6 @@ const CreateNewComment = () => {
 
   const onSubmitForm = (event) => {
     event.preventDefault();
-    console.log(form);
     const postId = params.id;
     createCommentRequest(form, clear, postId);
   };

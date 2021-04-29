@@ -31,13 +31,13 @@ export const voteCommentRequest = (body, postId, commentId) => {
         },
       })
     .then((response) => {
-        console.log("entrou no voto",response)
+    
       alert(
         "THEN Alert aqui só pra mostrar que o request está funcionando, porque não está atualizando automáticamente ainda"
       );
     })
     .catch((error) => {
-        console.log(error.response)
+ 
       alert(
         "ERROR Alert aqui só pra mostrar que o request está funcionando, porque não está atualizando automáticamente ainda"
       );

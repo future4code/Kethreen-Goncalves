@@ -63,7 +63,6 @@ const DetailsPostPage = () => {
     return <>{letterUser.toUpperCase()}</>;
   };
 
-  console.log("detalhesss",postsDetails);
 
   return (
     <div>

@@ -18,7 +18,6 @@ export const useRequestData = (initialData, url) => {
       })
       .catch((err) => {
         goToLogin(history) 
-        console.log(err);
         alert("É precisso logar para acessar a plataforma");
       });
      
@@ -41,7 +40,7 @@ export const useRequestDataId = (initialData, url) => {
         setData(res.data.post);
       })
       .catch((err) => {
-        console.log(err);
+
         alert("Ocorreu um erro, tente novamente");
       });
   }, [url]);
