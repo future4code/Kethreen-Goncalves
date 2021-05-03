@@ -1,30 +1,42 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import DetailsPostPage from "../pages/DetailsPostPage/DetailsPostPage";
-import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import CreatePostPage from "../pages/CreatePostPage/CreatePostPage";
 import FeedPage from "../pages/FeedPage/FeedPage";
 import LoginPage from "../pages/LoginPage/LoginPage";
-import AddPostPage from "../pages/PostPage/PostPage";
+import PostPage from "../pages/PostPage/PostPage";
 import SignUpPage from "../pages/SignUpPage/SignUpPage";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import Header from "../components/Header/Header";
 
-const Router = () => {
+const Router = (props) => {
+  const toggleChecked = props.toggleChecked;
+  const toggleCheckedLigth = props.toggleCheckedLigth;
+  const checked = props.checked;
+
+  useEffect(() => {}, [checked]);
+
   return (
     <BrowserRouter>
+      <Header
+        checked={checked}
+        toggleChecked={toggleChecked}
+        toggleCheckedLigth={toggleCheckedLigth}
+      />
       <Switch>
-        <Route exact path='/'>
+        <Route exact path='/login'>
           <LoginPage />
         </Route>
-        <Route exact path='/posts'>
+        <Route exact path='/signup'>
           <SignUpPage />
         </Route>
-        <Route exact path='/feed'>
+        <Route exact path='/'>
           <FeedPage />
         </Route>
-        <Route exact path='/posts/:id'>
-          <DetailsPostPage />
+        <Route exact path='/post/:id'>
+          <PostPage />
         </Route>
-        <Route exact path='/add-post'>
-          <AddPostPage />
+        <Route exact path='/createpost'>
+          <CreatePostPage />
         </Route>
         <Route>
           <ErrorPage />

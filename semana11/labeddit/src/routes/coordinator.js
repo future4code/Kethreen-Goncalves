@@ -1,21 +1,23 @@
 export const goToLogin = (history) => {
-  history.push("/");
+  history.push("/login");
 };
 
 export const goToSignUp = (history) => {
-  history.push("/posts");
+  history.replace("/signup");
 };
 
-export const goToFeedPage = (history) => {
-  history.push("/feed");
+export const goToFeed = (history) => {
+  history.replace("/");
 };
 
-export const goToAddPost = (history) => {
-  history.push("/add-post");
+export const goToCreatePostPage = (history) => {
+  history.replace("/createpost");
 };
 
-export const goToDetailsPost = (history, id) => {
-  history.push(`/posts/${id}`);
+export const goToPostPage = (history, id) => {
+  history.push(`/post/${id}`);
 };
 
-
+export const goToPreviousPage = (history) => {
+  history.goBack();
+};

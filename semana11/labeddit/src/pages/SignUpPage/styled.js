@@ -2,37 +2,10 @@ import styled from "styled-components";
 
 export const ScreenContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   width: 100vw;
-  height: 90vh;
-  @media (max-width: 800px) {
-    flex-direction: column;
-  }
-`;
-export const SectionLogoText = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 50vw;
-  h3 {
-    width: 35vw;
-    font-size: 28px;
-    text-align: justify;
-  }
-  @media (max-width: 800px) {
-    width: 100vw;
-    h3 {
-      width: 80vw;
-      font-size: 20px;
-    }
-  }
-`;
-export const SectionFormLogin = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 50vw;
+  margin-top: 15vh;
 `;
 
 export const InputsContainer = styled.div`
@@ -44,7 +17,7 @@ export const InputsContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-export const LoginFormContainer = styled.div`
+export const SignUpFormContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 80vw;
@@ -59,6 +32,8 @@ export const SignUpButtonContainer = styled.div`
 `;
 
 export const LogoImage = styled.img`
-  width: clamp(150px, 50vw, 300px);
-  margin-top: 2vh;
+  width: 70vw;
+  max-width: 350px;
+  margin-bottom: 20px;
+  transform: translateZ(0);
 `;
