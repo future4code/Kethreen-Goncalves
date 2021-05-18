@@ -1,0 +1,19 @@
+{
+  "name": "aula41",
+  "version": "1.0.0",
+  "description": "trabalho node",
+  "main": "index.js",
+  "scripts": {
+    "calculate": "clear && node exe2.js",
+    "start": "clear && node exe3.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "laneskell@gmail.com"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "kell lanes",
+  "license": "ISC"
+}
