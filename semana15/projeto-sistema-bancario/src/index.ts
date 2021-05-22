@@ -7,7 +7,7 @@ app.use(cors());
 
 type Expense = {
   value: number;
-  date: string;
+  date: number;
   description: string;
 };
 
@@ -17,7 +17,7 @@ type User = {
   cpf: string;
   dateOfBirth: string;
   balance: number;
-  statement: [{}];
+  statement: Expense[];
 };
 
 let users: User[] = [
@@ -26,9 +26,9 @@ let users: User[] = [
     name: "Kell Lanes",
     cpf: "12345678910",
     dateOfBirth: "1990-07-16",
-    balance: 500,
+    balance: 600,
     statement: [
-      { value: 500, date: "2020-01-01", description: "Money deposit." },
+      { value: 600, date: 1621609733, description: "Depósito em Dinheiro" },
     ],
   },
   {
@@ -38,7 +38,7 @@ let users: User[] = [
     dateOfBirth: "1995-11-21",
     balance: 1500,
     statement: [
-      { value: 1500, date: "2020-02-01", description: "Money deposit." },
+      { value: 1500, date: 1621613333, description: "Depósito em Dinheiro" },
     ],
   },
   {
@@ -48,7 +48,7 @@ let users: User[] = [
     dateOfBirth: "1989-03-11",
     balance: 10000,
     statement: [
-      { value: 10000, date: "2020-05-01", description: "Money deposit." },
+      { value: 10000, date: 1621631893, description: "Depósito em Dinheiro" },
     ],
   },
   {
@@ -58,12 +58,23 @@ let users: User[] = [
     dateOfBirth: "1994-10-31",
     balance: 800,
     statement: [
-      { value: 800, date: "2020-05-01", description: "Money deposit." },
+      { value: 800, date: 1621682293, description: "Depósito em Dinheiro" },
     ],
   },
 ];
 
-let currentYear = new Date().getFullYear();
+
+function calculateAge(dobString: any) {
+    var dob = new Date(dobString);
+    var currentDate = new Date();
+    var currentYear = currentDate.getUTCFullYear();
+    var birthdayThisYear = new Date(currentYear, dob.getUTCMonth(), dob.getUTCDate());
+    var age = currentYear - dob.getUTCFullYear();
+    if(birthdayThisYear > currentDate) {
+    age--;
+    }
+    return age;
+    }
 
 app.get("/users", (req: Request, res: Response) => {
   try {
@@ -78,20 +89,20 @@ app.get("/users", (req: Request, res: Response) => {
 app.post("/users", (req: Request, res: Response) => {
   try {
     const { name, cpf, dateOfBirth } = req.body;
-    let yearOfBirth = dateOfBirth.substr(0, 4);
-    let age = Number(currentYear) - Number(yearOfBirth);
+    let age = Number(calculateAge(dateOfBirth));
     if (age >= 18) {
       const newUser: User = {
-        id: Date.now(),
+        // Date.now()
+        id: users.length+1,
         name,
         cpf,
         dateOfBirth,
         balance: 0,
-        statement: [{}],
+        statement: [],
       };
       if (!name || !cpf) {
         throw new Error(
-          "Please check body, it requires name, CPF and date of birth."
+          "Check body, it requires name, CPF and date of birth."
         );
       }
       users.map((user) => {
@@ -114,19 +125,21 @@ app.post("/users", (req: Request, res: Response) => {
 app.get("/users/:cpf", (req: Request, res: Response) => {
   try {
     const cpfParams = req.params.cpf as string;
+    let name;
     let balance;
     if (cpfParams.length < 11) {
       throw new Error("Check CPF, 11 numbers required");
     } else {
       users.map((user) => {
         if (user.cpf === cpfParams) {
+          name = user.name;
           balance = Number(user.balance);
         }
       });
       if (!balance) {
         throw new Error("No user with that CPF found.");
       }
-      res.status(200).send({ balance });
+      res.status(200).send({ name, balance });
     }
   } catch (err) {
     res.status(400).send({
@@ -150,20 +163,22 @@ app.put("/users/add", (req: Request, res: Response) => {
           user.name.toLowerCase() === nameQuery.toLocaleLowerCase()
         ) {
           user.balance += Number(valueQuery);
-          let todayDate = new Date();
+   
           let newItem: Expense = {
             value: Number(valueQuery),
-            date: todayDate.toISOString().substring(0, 10),
-            description: "Money deposit.",
+            date:  Date.now(),
+            description: "Depósito em Dinheiro",
           };
           user.statement.push(newItem);
           result = true;
+        } else{
+            
         }
       });
       if (!result) {
-        throw new Error("No user with that CPF and name found.");
+        throw new Error("User not found, check name and cpf");
       }
-      res.status(200).send("Deposit/Expense added successfully.");
+      res.status(200).send("Value added successfully and Updated balance");
     }
   } catch (err) {
     res.status(400).send({
@@ -172,10 +187,7 @@ app.put("/users/add", (req: Request, res: Response) => {
   }
 });
 
-// Para testar se o servidor está tratando os endpoints corretamente
-app.get("/ping", (req: Request, res: Response) => {
-  res.status(200).send("pong!");
-});
+
 
 app.listen(3003, () => {
   console.log("Server is running at port 3003");
