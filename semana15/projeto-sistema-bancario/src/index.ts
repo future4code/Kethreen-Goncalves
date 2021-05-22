@@ -7,7 +7,7 @@ app.use(cors());
 
 type Expense = {
   value: number;
-  date: number;
+  date: number | string;
   description: string;
 };
 
@@ -171,9 +171,7 @@ app.put("/users/add", (req: Request, res: Response) => {
           };
           user.statement.push(newItem);
           result = true;
-        } else{
-            
-        }
+        } 
       });
       if (!result) {
         throw new Error("User not found, check name and cpf");
@@ -187,6 +185,51 @@ app.put("/users/add", (req: Request, res: Response) => {
   }
 });
 
+app.post("/users/payment", (req: Request, res: Response) => {
+    try {
+    const { cpf, value, description, date } = req.body;
+    let result = false;
+ 
+   let datePayment = date
+
+    if(date===""){
+        datePayment = Date.now
+    } else if(date<Date.now ){
+        throw new Error("Date cannot be earlier than today");
+    }else{
+        datePayment = date
+    }
+    if (cpf.length < 11 || !value || !description) {
+        throw new Error("Check parameters.");
+      } else {
+        users.map((user) => {
+            if (user.cpf === cpf && value<=user.balance) {
+              user.balance -= Number(value);
+              let newItem: Expense = {
+                value: Number(value),
+                date:  datePayment,
+                description: description,
+              };
+              user.statement.push(newItem);
+              result = true;
+            } else if(value > user.balance){
+                throw new Error("insufficient funds, Check the Value");
+            }
+
+          });
+        }
+        if (!result) {
+            throw new Error("User not found, Check the CPF");
+          }
+          res.status(200).send("Payment of expense successful");
+        
+        }catch (err) {
+        res.status(400).send({
+          message: err.message,
+        });
+      }
+
+} )
 
 
 app.listen(3003, () => {
