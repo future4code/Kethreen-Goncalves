@@ -1,29 +1,182 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
-import { AddressInfo } from "net";
-
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get("/", (req: Request, res: Response) => {
-    try {
-        res.status(200).send("funciona?")
-    } catch (erro) {
-        res.status(400).send({ message: erro.message })
-    }
-})
+type Expense = {
+  value: number;
+  date: string;
+  description: string;
+};
 
+type User = {
+  id: number;
+  name: string;
+  cpf: string;
+  dateOfBirth: string;
+  balance: number;
+  statement: [{}];
+};
 
+let users: User[] = [
+  {
+    id: 1,
+    name: "Kell Lanes",
+    cpf: "12345678910",
+    dateOfBirth: "1990-07-16",
+    balance: 500,
+    statement: [
+      { value: 500, date: "2020-01-01", description: "Money deposit." },
+    ],
+  },
+  {
+    id: 2,
+    name: "Clara Macedo",
+    cpf: "12345678911",
+    dateOfBirth: "1995-11-21",
+    balance: 1500,
+    statement: [
+      { value: 1500, date: "2020-02-01", description: "Money deposit." },
+    ],
+  },
+  {
+    id: 3,
+    name: "Jeann Chuab",
+    cpf: "12345678912",
+    dateOfBirth: "1989-03-11",
+    balance: 10000,
+    statement: [
+      { value: 10000, date: "2020-05-01", description: "Money deposit." },
+    ],
+  },
+  {
+    id: 4,
+    name: "Bruna Prado",
+    cpf: "12345678913",
+    dateOfBirth: "1994-10-31",
+    balance: 800,
+    statement: [
+      { value: 800, date: "2020-05-01", description: "Money deposit." },
+    ],
+  },
+];
 
+let currentYear = new Date().getFullYear();
 
+app.get("/users", (req: Request, res: Response) => {
+  try {
+    res.status(200).send(users);
+  } catch (err) {
+    res.status(400).send({
+      message: err.message,
+    });
+  }
+});
 
-const server = app.listen(process.env.PORT || 3003, () => {
-    if (server) {
-       const address = server.address() as AddressInfo;
-       console.log(`Server is running in http://localhost: ${address.port}`);
+app.post("/users", (req: Request, res: Response) => {
+  try {
+    const { name, cpf, dateOfBirth } = req.body;
+    let yearOfBirth = dateOfBirth.substr(0, 4);
+    let age = Number(currentYear) - Number(yearOfBirth);
+    if (age >= 18) {
+      const newUser: User = {
+        id: Date.now(),
+        name,
+        cpf,
+        dateOfBirth,
+        balance: 0,
+        statement: [{}],
+      };
+      if (!name || !cpf) {
+        throw new Error(
+          "Please check body, it requires name, CPF and date of birth."
+        );
+      }
+      users.map((user) => {
+        if (user.cpf.includes(cpf)) {
+          throw new Error("This CPF is already registered.");
+        }
+      });
+      users.push(newUser);
+      res.status(200).send("User created sucessfully");
     } else {
-       console.error(`Failure upon starting server.`);
+      throw new Error("User is not 18 years old yet.");
     }
+  } catch (err) {
+    res.status(400).send({
+      message: err.message,
+    });
+  }
+});
+
+app.get("/users/:cpf", (req: Request, res: Response) => {
+  try {
+    const cpfParams = req.params.cpf as string;
+    let balance;
+    if (cpfParams.length < 11) {
+      throw new Error("Check CPF, 11 numbers required");
+    } else {
+      users.map((user) => {
+        if (user.cpf === cpfParams) {
+          balance = Number(user.balance);
+        }
+      });
+      if (!balance) {
+        throw new Error("No user with that CPF found.");
+      }
+      res.status(200).send({ balance });
+    }
+  } catch (err) {
+    res.status(400).send({
+      message: err.message,
+    });
+  }
+});
+
+app.put("/users/add", (req: Request, res: Response) => {
+  try {
+    const cpfQuery = req.query.cpf as string;
+    const nameQuery = req.query.name as string;
+    const valueQuery = req.query.value;
+    let result = false;
+    if (cpfQuery.length < 11 || !nameQuery || !valueQuery) {
+      throw new Error("Check parameters.");
+    } else {
+      users.map((user) => {
+        if (
+          user.cpf === cpfQuery &&
+          user.name.toLowerCase() === nameQuery.toLocaleLowerCase()
+        ) {
+          user.balance += Number(valueQuery);
+          let todayDate = new Date();
+          let newItem: Expense = {
+            value: Number(valueQuery),
+            date: todayDate.toISOString().substring(0, 10),
+            description: "Money deposit.",
+          };
+          user.statement.push(newItem);
+          result = true;
+        }
+      });
+      if (!result) {
+        throw new Error("No user with that CPF and name found.");
+      }
+      res.status(200).send("Deposit/Expense added successfully.");
+    }
+  } catch (err) {
+    res.status(400).send({
+      message: err.message,
+    });
+  }
+});
+
+// Para testar se o servidor está tratando os endpoints corretamente
+app.get("/ping", (req: Request, res: Response) => {
+  res.status(200).send("pong!");
+});
+
+app.listen(3003, () => {
+  console.log("Server is running at port 3003");
 });
