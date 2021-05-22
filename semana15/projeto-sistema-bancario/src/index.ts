@@ -63,18 +63,21 @@ let users: User[] = [
   },
 ];
 
-
 function calculateAge(dobString: any) {
-    var dob = new Date(dobString);
-    var currentDate = new Date();
-    var currentYear = currentDate.getUTCFullYear();
-    var birthdayThisYear = new Date(currentYear, dob.getUTCMonth(), dob.getUTCDate());
-    var age = currentYear - dob.getUTCFullYear();
-    if(birthdayThisYear > currentDate) {
+  var dob = new Date(dobString);
+  var currentDate = new Date();
+  var currentYear = currentDate.getUTCFullYear();
+  var birthdayThisYear = new Date(
+    currentYear,
+    dob.getUTCMonth(),
+    dob.getUTCDate()
+  );
+  var age = currentYear - dob.getUTCFullYear();
+  if (birthdayThisYear > currentDate) {
     age--;
-    }
-    return age;
-    }
+  }
+  return age;
+}
 
 app.get("/users", (req: Request, res: Response) => {
   try {
@@ -93,7 +96,7 @@ app.post("/users", (req: Request, res: Response) => {
     if (age >= 18) {
       const newUser: User = {
         // Date.now()
-        id: users.length+1,
+        id: users.length + 1,
         name,
         cpf,
         dateOfBirth,
@@ -101,9 +104,7 @@ app.post("/users", (req: Request, res: Response) => {
         statement: [],
       };
       if (!name || !cpf) {
-        throw new Error(
-          "Check body, it requires name, CPF and date of birth."
-        );
+        throw new Error("Check body, it requires name, CPF and date of birth.");
       }
       users.map((user) => {
         if (user.cpf.includes(cpf)) {
@@ -128,7 +129,7 @@ app.get("/users/:cpf", (req: Request, res: Response) => {
     let name;
     let balance;
     if (cpfParams.length < 11) {
-      throw new Error("Check CPF, 11 numbers required");
+      throw new Error("The CPF must have 11 numbers");
     } else {
       users.map((user) => {
         if (user.cpf === cpfParams) {
@@ -163,15 +164,15 @@ app.put("/users/add", (req: Request, res: Response) => {
           user.name.toLowerCase() === nameQuery.toLocaleLowerCase()
         ) {
           user.balance += Number(valueQuery);
-   
+
           let newItem: Expense = {
             value: Number(valueQuery),
-            date:  Date.now(),
+            date: Date.now(),
             description: "Depósito em Dinheiro",
           };
           user.statement.push(newItem);
           result = true;
-        } 
+        }
       });
       if (!result) {
         throw new Error("User not found, check name and cpf");
@@ -186,51 +187,115 @@ app.put("/users/add", (req: Request, res: Response) => {
 });
 
 app.post("/users/payment", (req: Request, res: Response) => {
-    try {
+  try {
     const { cpf, value, description, date } = req.body;
     let result = false;
- 
-   let datePayment = date
 
-    if(date===""){
-        datePayment = Date.now
-    } else if(date<Date.now ){
-        throw new Error("Date cannot be earlier than today");
-    }else{
-        datePayment = date
+    let datePayment = date;
+
+    if (date === "") {
+      datePayment = Date.now();
+    } else if (date < Date.now) {
+      throw new Error("Date cannot be earlier than today");
+    } else {
+      datePayment = date;
     }
     if (cpf.length < 11 || !value || !description) {
-        throw new Error("Check parameters.");
-      } else {
-        users.map((user) => {
-            if (user.cpf === cpf && value<=user.balance) {
-              user.balance -= Number(value);
+      throw new Error("Check parameters.");
+    } else {
+      users.map((user) => {
+        if (user.cpf === cpf) {
+          let balance = user.balance;
+          if (value < balance) {
+            user.balance -= Number(value);
+            let newItem: Expense = {
+              value: Number(value)*-1,
+              date: datePayment,
+              description: description,
+            };
+            user.statement.push(newItem);
+            result = true;
+          } else {
+            throw new Error("insufficient funds, Check the Value");
+          }
+        }
+      });
+    }
+    if (!result) {
+      throw new Error("User not found, Check the CPF");
+    }
+    res.status(200).send("Payment of expense successful");
+  } catch (err) {
+    res.status(400).send({
+      message: err.message,
+    });
+  }
+});
+
+app.post("/users/transfer", (req: Request, res: Response) => {
+    try {
+        const { namePayer, cpfPayer, recipientName, recipientCpf, value } = req.body;
+        let balance;
+        let result = users;
+        if (cpfPayer.length !== 11 || recipientCpf.length !== 11) {
+          throw new Error("The CPF must have 11 numbers");
+        } else {
+          if (recipientName && recipientCpf) {
+            result = result
+              .filter((user) => user.name === recipientName)
+              .filter((user) => user.cpf === recipientCpf);
+          }
+          if (!result.length) {
+            throw new Error("User Payer or User Recipient not found. check the cpfs");
+          }
+          users.map((user) => {
+            if (
+              user.cpf === cpfPayer &&
+              user.name.toLowerCase() === namePayer.toLowerCase()
+            ) {
+              if (user.balance >= Number(value)) {
+                user.balance -= Number(value)
+                let newItem: Expense = {
+                  value: Number(value)*-1,
+                  date:Date.now(),
+                  description: "Transferência entre contas",
+                };
+                balance = true;
+                user.statement.push(newItem);
+              } else {
+                throw new Error(
+                  "Insufficient balance, check the value"
+                );
+              }
+            }
+          });
+          users.map((user) => {
+            if (
+              user.cpf === recipientCpf &&
+              user.name.toLowerCase() === recipientName.toLowerCase()
+            ) {
+                user.balance += Number(value)
               let newItem: Expense = {
                 value: Number(value),
-                date:  datePayment,
-                description: description,
+                date: Date.now(),
+                description: "Transferência entre contas",
+                
               };
               user.statement.push(newItem);
-              result = true;
-            } else if(value > user.balance){
-                throw new Error("insufficient funds, Check the Value");
             }
-
           });
-        }
-        if (!result) {
-            throw new Error("User not found, Check the CPF");
+          if (!balance) {
+            throw new Error("User not found, Check your parameters.");
+          } else {
+            res.status(200).send("Transfered successfully.");
           }
-          res.status(200).send("Payment of expense successful");
-        
-        }catch (err) {
-        res.status(400).send({
-          message: err.message,
-        });
-      }
-
-} )
-
+        }
+  } catch (err) {
+    res.status(400).send({
+      message: err.message,
+    })
+  }
+});
 
 app.listen(3003, () => {
   console.log("Server is running at port 3003");
