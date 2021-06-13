@@ -20,7 +20,7 @@ export default async function login(
         const [user] = await connection(userTableName)
             .where({email})
 
-        const passwordIsCorrect: boolean = compareHash(password, user.password)
+        const passwordIsCorrect: boolean = compareHash(password, user?.password || '')
 
         if(!user || !passwordIsCorrect){
             res.statusCode = 401

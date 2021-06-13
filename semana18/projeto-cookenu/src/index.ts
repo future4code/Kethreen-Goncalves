@@ -5,6 +5,7 @@ import signup from "./endpoints/users/signup"
 import getUserById from "./endpoints/users/getUserById"
 import createRecipe from "./endpoints/recipes/createRecipe"
 import getRecipeById from "./endpoints/recipes/getRecipeById"
+import getAllRecipes from "./endpoints/recipes/getAllRecipes"
 
 
 app.post("/users/signup", signup)
@@ -13,5 +14,6 @@ app.get("/users/profile", getProfile)
 app.get("/users/:id/profile", getUserById)
 
 app.post("/recipe", createRecipe)
+app.get("/recipe", getAllRecipes)
 app.get("/recipe/:id", getRecipeById)
 

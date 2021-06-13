@@ -35,13 +35,13 @@ Content-Type: application/json
 Authorization: {{login.response.body.token}}
 
 {
-    "title": "Big Mac",
-    "description": "Dois hambúgueres, alface, queijo, molho especial, cebola, picles num pão com gergilim"
+    "title": "Pé de Moleque",
+    "description": "Derreta 1/2kg de açucar com 1/2kg de amendoim sem pele, misture 1 lata de leite condensado e 2 colheres de manteiga. "
 
 }
 
 ###
 
-GET http://localhost:3003/recipe/624d419e-80bb-4f52-a95f-0c117d586c5f
+GET http://localhost:3003/recipe/
 Authorization: {{login.response.body.token}}
 

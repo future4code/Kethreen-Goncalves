@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 import connection from "../../connection";
 
 
-export default async function getRecipeById(
+export default async function getAllRecipes(
     req: Request,
     res: Response
     ): Promise<void> {
@@ -19,16 +19,16 @@ export default async function getRecipeById(
         }
 
 
-        const [recipe] = await connection(recipesTableName)
-            .where({id: req.params.id})
+        const recipe = await connection(recipesTableName)
+        
 
         
         if(!recipe){
             res.statusCode = 404
-            throw new Error("Recipe not found"); 
+            throw new Error("Não tem receitas"); 
         }
 
-        res.send({recipe})
+        res.send(recipe)
         } catch (error){
         console.log(error.message);
         
