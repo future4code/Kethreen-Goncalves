@@ -2,8 +2,8 @@ POST http://localhost:3003/users/signup
 Content-Type: application/json
 
 {
-    "name": "Alice",
-    "email": "alice@gmail.com",
+    "name": "bob",
+    "email": "bob@gmail.com",
     "password": "123456"
 
 }
@@ -25,5 +25,23 @@ GET http://localhost:3003/users/profile
 Authorization: {{login.response.body.token}}
 
 ###
-GET http://localhost:3003/users/{{getProfile.response.body.id}}/profile
+GET http://localhost:3003/users/a5240ce6-2d50-43a4-bed6-c5a644c85714/profile
 Authorization: {{login.response.body.token}}
+
+###
+
+POST http://localhost:3003/recipe
+Content-Type: application/json
+Authorization: {{login.response.body.token}}
+
+{
+    "title": "Big Mac",
+    "description": "Dois hambúgueres, alface, queijo, molho especial, cebola, picles num pão com gergilim"
+
+}
+
+###
+
+GET http://localhost:3003/recipe/624d419e-80bb-4f52-a95f-0c117d586c5f
+Authorization: {{login.response.body.token}}
+
