@@ -11,6 +11,11 @@ export default async function getRecipeById(
         const [recipe] = await connection(recipesTableName)
             .where({id: req.params.id})
     
+        if(!recipe){
+            res.statusCode = 404
+            throw new Error("Recipe not found"); 
+        }
+
         res.send({recipe})
         } catch (error){
         console.log(error.message);

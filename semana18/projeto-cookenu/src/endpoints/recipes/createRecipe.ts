@@ -15,6 +15,16 @@ export default async function createRecipe(
 
             const tokenData = getTokenData(token!)
 
+            if(!tokenData){
+                res.statusCode = 401
+                throw new Error("Unauthorized, token invalid")
+            }
+
+            if(!title || !description){
+                res.statusCode = 422
+                throw new Error(" 'title' and 'description' required") 
+            }
+
             const id = generateId()
 
             await connection(recipesTableName)

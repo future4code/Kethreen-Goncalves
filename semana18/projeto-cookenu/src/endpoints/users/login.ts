@@ -11,12 +11,18 @@ export default async function login(
     try{
         const { email, password} = req.body
 
+
+        if(!email || !password){
+            res.statusCode = 422
+            throw new Error(" 'email' and 'password' required") 
+        }
+
         const [user] = await connection(userTableName)
             .where({email})
 
         const passwordIsCorrect: boolean = compareHash(password, user.password)
 
-        if(!passwordIsCorrect){
+        if(!user || !passwordIsCorrect){
             res.statusCode = 401
             throw new Error("Invalid Credentials");
             

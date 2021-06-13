@@ -12,8 +12,18 @@ export default async function getProfile(
 
         const tokenData = getTokenData(token)
 
+        if(!tokenData){
+            res.statusCode = 401
+            throw new Error("Unauthorized, token invalid")
+        }
+
         const [user] = await connection(userTableName)
             .where({id: tokenData?.id})
+            
+        if(!user){
+            res.statusCode = 404
+            throw new Error("User not found")
+        }
 
         res.send({
             id: user.id,

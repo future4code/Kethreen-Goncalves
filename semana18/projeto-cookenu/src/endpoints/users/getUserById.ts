@@ -10,10 +10,20 @@ export default async function getUserById(
     try{
         const token: string = req.headers.authorization!
 
-        getTokenData(token)
+        const tokenData = getTokenData(token)
+
+        if(!tokenData){
+            res.statusCode = 401
+            throw new Error("Unauthorized, token invalid")
+        }
 
         const [user] = await connection(userTableName)
             .where({id: req.params.id})
+        
+        if(!user){
+            res.statusCode = 404
+            throw new Error("User not found")
+            }
 
         res.send({
             id: user.id,
