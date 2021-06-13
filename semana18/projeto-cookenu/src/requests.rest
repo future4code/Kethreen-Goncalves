@@ -1,0 +1,29 @@
+POST http://localhost:3003/users/signup
+Content-Type: application/json
+
+{
+    "name": "Alice",
+    "email": "alice@gmail.com",
+    "password": "123456"
+
+}
+
+###
+# @name login
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+    "email": "alice@gmail.com",
+    "password": "123456"
+
+}
+
+###
+# @name getProfile
+GET http://localhost:3003/users/profile
+Authorization: {{login.response.body.token}}
+
+###
+GET http://localhost:3003/users/{{getProfile.response.body.id}}/profile
+Authorization: {{login.response.body.token}}
