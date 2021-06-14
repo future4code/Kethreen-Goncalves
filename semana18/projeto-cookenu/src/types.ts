@@ -21,3 +21,11 @@ export type user = {
     password:string
     // recipes?: recipes[]
 }
+
+export type recipeFullInfo = {
+    id: string;
+    user_id: string;
+    title: string;
+    description: string;
+    createdAt: string;
+  };

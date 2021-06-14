@@ -42,6 +42,28 @@ Authorization: {{login.response.body.token}}
 
 ###
 
-GET http://localhost:3003/recipe/
+GET http://localhost:3003/recipe
 Authorization: {{login.response.body.token}}
 
+###
+
+POST http://localhost:3003/user/follow
+Content-Type: application/json
+Authorization: {{login.response.body.token}}
+{
+   "userToFollowId": "a5240ce6-2d50-43a4-bed6-c5a644c85714"
+}
+
+###
+
+POST http://localhost:3003/user/unfollow
+Content-Type: application/json
+Authorization: {{login.response.body.token}}
+{
+   "userToUnfollowId": "a5240ce6-2d50-43a4-bed6-c5a644c85714"
+}
+
+###
+
+GET http://localhost:3003/user/feed
+Authorization: {{login.response.body.token}}

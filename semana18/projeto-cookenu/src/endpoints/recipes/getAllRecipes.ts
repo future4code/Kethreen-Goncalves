@@ -25,7 +25,7 @@ export default async function getAllRecipes(
         
         if(!recipe){
             res.statusCode = 404
-            throw new Error("Não tem receitas"); 
+            throw new Error("there are no recipes"); 
         }
 
         res.send(recipe)
