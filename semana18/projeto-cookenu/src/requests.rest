@@ -1,0 +1,69 @@
+POST http://localhost:3003/users/signup
+Content-Type: application/json
+
+{
+    "name": "bob",
+    "email": "bob@gmail.com",
+    "password": "123456"
+
+}
+
+###
+# @name login
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+    "email": "alice@gmail.com",
+    "password": "123456"
+
+}
+
+###
+# @name getProfile
+GET http://localhost:3003/users/profile
+Authorization: {{login.response.body.token}}
+
+###
+GET http://localhost:3003/users/a5240ce6-2d50-43a4-bed6-c5a644c85714/profile
+Authorization: {{login.response.body.token}}
+
+###
+
+POST http://localhost:3003/recipe
+Content-Type: application/json
+Authorization: {{login.response.body.token}}
+
+{
+    "title": "Pé de Moleque",
+    "description": "Derreta 1/2kg de açucar com 1/2kg de amendoim sem pele, misture 1 lata de leite condensado e 2 colheres de manteiga. "
+
+}
+
+###
+
+GET http://localhost:3003/recipe
+Authorization: {{login.response.body.token}}
+
+###
+
+POST http://localhost:3003/user/follow
+Content-Type: application/json
+Authorization: {{login.response.body.token}}
+{
+   "userToFollowId": "a5240ce6-2d50-43a4-bed6-c5a644c85714"
+}
+
+###
+
+POST http://localhost:3003/user/unfollow
+Content-Type: application/json
+Authorization: {{login.response.body.token}}
+{
+   "userToUnfollowId": "a5240ce6-2d50-43a4-bed6-c5a644c85714"
+}
+
+###
+
+GET http://localhost:3003/user/feed
+Authorization: {{login.response.body.token}}
