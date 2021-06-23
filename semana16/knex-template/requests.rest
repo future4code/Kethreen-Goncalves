@@ -1,0 +1,34 @@
+GET http://localhost:3003/actors
+
+###
+
+POST http://localhost:3003/actors
+Content-Type: application/json
+
+{
+    "id":"007",
+    "name":"Kaio Castro",
+    "birthDate":"1992-01-01",
+    "gender":"male",
+    "salary": 370000
+}
+
+###
+
+PUT http://localhost:3003/actors/009
+Content-Type: application/json
+
+    {
+
+    "salary": 19000
+    }
+
+
+###
+
+DELETE http://localhost:3003/actors/010
+
+
+###
+
+GET http://localhost:3003/actors/?gender=male
